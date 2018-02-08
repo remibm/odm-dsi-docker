@@ -35,7 +35,7 @@ services:
         dsi-runtime-inbound:
                 container_name: dsi-runtime-inbound
                 image: $DSI_IMG
-                command: ["/root/start.sh", "dsi-runtime-inbound", "dsi-runtime-catalog"]
+                command: ["/root/start.sh", "dsi-runtime-inbound", "dsi-runtime-catalog", "dsi-runtime-container1"]
                 ports:
                         - "9090:9080"
                         - "9450:9443"
@@ -48,7 +48,7 @@ services:
         dsi-runtime-outbound:
                 container_name: dsi-runtime-outbound
                 image: $DSI_IMG
-                command: ["/root/start.sh", "cisOutbound", "dsi-runtime-catalog"]
+                command: ["/root/start.sh", "cisOutbound", "dsi-runtime-catalog", "dsi-runtime-container1"]
                 ports:
                         - "9091:9080"
                         - "9451:9443"

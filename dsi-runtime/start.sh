@@ -5,6 +5,7 @@
 # The first argument of the script is the name of the template. By default,
 # it is 'dsi-runtime'.
 # The second argument is the hostname of the catalog server.
+# The third optional argument is the hostname of a runtime container, used by connectivity container to check grid availability before starting
 
 set -e
 
@@ -81,6 +82,31 @@ if [ ! -z "$DSI_CATALOG_HOSTNAME" ]; then
         BOOTSTRAP_FILE=/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/bootstrap.properties
         echo "Modifying $BOOTSTRAP_FILE"
         sed -i "s/ia.bootstrapEndpoints=localhost:2809/ia.bootstrapEndpoints=$DSI_CATALOG_HOSTNAME:2809/g" $BOOTSTRAP_FILE
+fi
+
+if [ ! -z "$2" ]; then
+        while true ; do
+                echo Testing availability of catalog server $DSI_CATALOG_HOSTNAME before starting container
+                CATALOG_TEST_RESULT=`/opt/dsi/runtime/wlp/bin/xscmd.sh -c showPrimaryCatalogServer --catalogEndPoints $DSI_CATALOG_HOSTNAME:2809 | egrep $DSI_CATALOG_HOSTNAME.*TRUE | wc -l`
+                if [ "$CATALOG_TEST_RESULT" -eq 1 ] ; then
+                        break
+                fi
+                echo Catalog is not yet online, holding for 5 seconds.
+                sleep 5
+        done
+fi
+
+if [ ! -z "$3" ]; then
+         RUNTIME_HOSTNAME="$3"
+         while true ; do
+                 echo Testing availability of grid on runtime server $RUNTIME_HOSTNAME before starting connectivity container
+                 GRID_ONLINE=`/opt/dsi/runtime/ia/bin/serverManager isonline --host=$RUNTIME_HOSTNAME --disableSSLHostnameVerification=true --disableServerCertificateVerification=true | egrep "is online" | wc -l` 
+                 if [ "$GRID_ONLINE" -eq 1 ]; then
+                         break
+                 fi
+                 echo Grid is not yet available, holding for 10 seconds.
+                 sleep 10
+         done
 fi
 
 echo "The IP of the DSI server is $INTERNAL_IP"
