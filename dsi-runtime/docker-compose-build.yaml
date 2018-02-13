@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+        dsi-runtime:
+                build:
+                        context: build
+                        args:
+                                baseimg: ubuntu
+                image: dsi-runtime
+        dsi-runtime-openjdk:
+                build:
+                        context: build
+                        args:
+                                baseimg: openjdk:8
+                image: dsi-runtime-openjdk
+        dsi-runtime-ibmjava:
+                build:
+                        context: build
+                        args:
+                                baseimg: ibmjava:latest
+                image: dsi-runtime-ibmjava

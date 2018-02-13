@@ -62,14 +62,13 @@ require to update accordingly the scripts and commands for running a DSI contain
 
 To make sure you use a supported JDK, build the DSI runtime image from a Linux installation directory.
 
-## Run a single DSI runtime with Docker
+## Run a single DSI runtime with Docker Compose
 
 ```sh
-docker run -p9443:9443 --name dsi-runtime dsi-runtime
+docker-compose up dsi-runtime
 ```
 
-The name of the Docker container is `dsi-runtime` and the port `9443` of
-the DSI REST API is bound to port `9443` of the host.
+`dsi-runtime` is the name of the service defined in the yaml file.
 
 When DSI is started, the output ends with the following lines:
 ```
@@ -80,6 +79,9 @@ When DSI is started, the output ends with the following lines:
 [AUDIT   ] CWWKT0016I: Web application available (default_host): http://58de6092c19c:9080/ibm/ia/rest/
 [AUDIT   ] CWWKT0016I: Web application available (default_host): http://58de6092c19c:9080/ibm/insights/
 ```
+
+REST APIs are available by default on host port 9080 with HTTP and on port 9443 with HTTPS.
+To change host ports, change `HTTP_PORT` and `HTTPS_PORT` variables in the `.env` file.
 
 ## Test a DSI Runtime running in Docker
 

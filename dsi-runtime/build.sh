@@ -63,10 +63,10 @@ cp "$SRC_DIR/Dockerfile" "$BUILD_DIR"
 
 if [ -z "$2" ]; then
         if [[ "$OSTYPE" != "darwin"* ]] && [[ "$OSTYPE" != "cygwin" ]]; then
-                docker-compose build
+                docker-compose -f docker-compose-build.yaml build
         else
-                docker-compose build dsi-runtime-ibmjava
-                docker-compose build dsi-runtime-openjdk
+                docker-compose -f docker-compose-build.yaml build dsi-runtime-ibmjava
+                docker-compose -f docker-compose-build.yaml build dsi-runtime-openjdk
         fi
 else
         docker-compose build "$2"
