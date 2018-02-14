@@ -26,7 +26,7 @@ if [ ! -d "$DSI_HOME_RUNTIME" ]; then
         exit 1
 fi
 
-BUILD_DIR="build"
+export BUILD_DIR="/tmp/dsi-docker-build.$$"
 BUILD_DIR_DSI="$BUILD_DIR/opt/dsi"
 BUILD_DIR_DSI_RUNTIME="$BUILD_DIR_DSI/runtime"
 SRC_DIR=`dirname $0`
