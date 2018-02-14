@@ -58,9 +58,11 @@ The command `docker images` can be used to verify that the image is now listed i
 On MacOS the build of the image will use the IBM JDK from the 'ibmjava' image, which might be different to the one supported by DSI Runtime.
 
 The name of this image will be dsi-runtime-ibmjava instead of dsi-runtime, it will
-require to update accordingly the scripts and commands for running a DSI container.
+require to adapt accordingly the scripts and commands for running a DSI container.
 
-To make sure you use a supported JDK, build the DSI runtime image from a Linux installation directory.
+In order to run containers or clusters on MacOS it is strongly advised to increase default values of CPU and memory in Docker menu `Preferences>Advanced`.
+Docker memory setting should be consistent with DSI container max memory heap (`-Xmx`) and actual memory use. 
+With default templates, we recommend at least 2Gb for each dsi-runtime-ibmjava container.
 
 ## Run a single DSI runtime with Docker Compose
 
