@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploymentPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ibm.com/ws/objectgrid/deploymentPolicy ../deploymentPolicy.xsd"
+	xmlns="http://ibm.com/ws/objectgrid/deploymentPolicy">
+	<objectgridDeployment objectgridName="com.ibm.ia">
+		<!-- numInitialContainers to the number of JVMs being started -->
+		<mapSet name="iaMaps" numberOfPartitions="5" numInitialContainers="1" minSyncReplicas="0" maxSyncReplicas="0" maxAsyncReplicas="0" developmentMode="true">
+			<map ref="DelayTimer.*" />
+			<map ref="JobDelayTimer.*" />
+			<map ref="EventQueue.*" />
+			<map ref="Solutions.*" />
+			<map ref="Entity.*" />
+			<map ref="DataProviderCache.*" />
+			<map ref="Rulesets.*" />
+			<map ref="GP.*" />
+			<map ref="OutboundQueue.*"/>
+			<map ref="JobSchedules.*" />
+			<map ref="JobResults.*" />
+			<map ref="JobHistory.*" />
+			<map ref="ActiveJobs.*" />
+			<map ref="AbandonedJobs.*" />
+			<map ref="EventQuery.*" />
+			<map ref="LocalJobQueue.*" />
+			<map ref="LocalPartialResultQueue.*" />
+			<map ref="PartialResultQueue.*" />
+			<map ref="Stats.*" />
+			<map ref="EventStore.*" />
+			<map ref="Invocations.*" />
+			<map ref="Recordings.*" />
+			<map ref="JobQueue.*"/>
+			<map ref="AbortJobQueue.*"/>
+			<map ref="CommLink.*"/>
+		</mapSet>
+	</objectgridDeployment>
+	<objectgridDeployment objectgridName="com.ibm.ia.runtime.cluster">
+		<mapSet name="iaConfigMaps" placementScope="CONTAINER_SCOPE" developmentMode="true">
+			<map ref="Config.*" />
+			<map ref="Runtime.*" />
+			<map ref="StaticRuntimeTokensStable"  />
+			<map ref="StaticRuntimeTokensVolatile" />
+			<map ref="StaticRuntimeServers" />
+		</mapSet>
+	</objectgridDeployment>
+	<objectgridDeployment objectgridName="com.ibm.ia.preload">
+		<mapSet name="iaPreloadMaps" numberOfPartitions="5" numInitialContainers="1" minSyncReplicas="0" maxSyncReplicas="0" maxAsyncReplicas="0" developmentMode="true">
+			<map ref="PreloadSummary" />
+			<map ref="PreloadBatches" />
+		</mapSet>
+	</objectgridDeployment>
+</deploymentPolicy>
