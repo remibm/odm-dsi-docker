@@ -79,5 +79,4 @@
         <ia_persistence databaseType="ORACLE" datasourceName="jdbc/dsi" maxBatchSize="400" maxCacheAge="1000"/>
 
         <ia_runtime mementoDatabaseFormat="json"/>
-
 </server>
