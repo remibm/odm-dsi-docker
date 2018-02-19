@@ -1,5 +1,12 @@
 ## Advanced usage of DSI on Docker
 
+## Container parameter customization using docker-compose
+
+DSI containers can be customized with specific parameters specified in `.env` file when running docker-compose.
+
+Customizable variables:
+ * `LOGGING_TRACE_SPECIFICATION` sets logging specification in `server.xml` of container. See specific documentation about Liberty logging and trace [here](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html).
+ 
 ## Persist deployed solutions
 
 As docker containers are stateless, deployed solutions in containers are not persisted.

@@ -116,4 +116,9 @@ if [ -f "$BOOTSTRAP_FILE" ]; then
         echo "Internal IP: $INTERNAL_IP"
 fi
 
+if [ "$LOGGING_TRACE_SPECIFICATION" !=  "" ] ; then
+        echo updating traceSpecification with $LOGGING_TRACE_SPECIFICATION
+        sed -i "s/traceSpecification=\".*\"/traceSpecification=$LOGGING_TRACE_SPECIFICATION/" $SRV_XML
+fi
+
 /opt/dsi/runtime/wlp/bin/server run $DSI_TEMPLATE
