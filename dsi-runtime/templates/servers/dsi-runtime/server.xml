@@ -66,4 +66,7 @@
     <serverCommands
         startServerTimeout="120"
         stopServerTimeout="120" />
+
+    <ia_runtime mementoDatabaseFormat="json"/>
+
 </server>
