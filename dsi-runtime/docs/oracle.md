@@ -16,7 +16,7 @@ docker run -p9443:9443 -e DSI_DB_HOSTNAME=$DSI_DB_HOSTNAME -e DSI_DB_USER=$DSI_D
 ```
 
 With the following environment variables:
- * DSI_DB_HOSTNAME: the hostaname of the Oracle database
+ * DSI_DB_HOSTNAME: the hostname of the Oracle database
  * DSI_DB_PASSWORD: the password of the Oracle database
  * DSI_DB_USER: the user of the Oracle database
 
