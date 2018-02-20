@@ -6,14 +6,15 @@ services:
                 ports:
                         - "${HTTP_PORT}:9080"
                         - "${HTTPS_PORT}:9443"
-               environment:
+                environment:
                         - LOGGING_TRACE_SPECIFICATION=$LOGGING_TRACE_SPECIFICATION
+
         dsi-runtime-openjdk:
                 image: dsi-runtime-openjdk
                 ports:
                         - "${HTTP_PORT}:9080"
                         - "${HTTPS_PORT}:9443"
-               environment:
+                environment:
                         - LOGGING_TRACE_SPECIFICATION=$LOGGING_TRACE_SPECIFICATION
 
         dsi-runtime-ibmjava:
