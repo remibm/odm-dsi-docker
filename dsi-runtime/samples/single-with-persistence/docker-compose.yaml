@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+        dsi-runtime:
+                image: dsi-runtime
+                command: ["/root/start.sh", "dsi-runtime-db2express"]
+                ports:
+                        - "${HTTP_PORT}:9080"
+                        - "${HTTPS_PORT}:9443"
+                volumes:
+                        - db2java:/opt/db2java:ro
+
+        db2express:
+                image: ibmcom/db2express-c
+                command: ["db2start"]
+                environment:
+                        - DB2INST1_PASSWORD="dsidb-pwd"
+                        - LICENSE=accept
+                volumes:
+                        - db2java:/home/db2inst1/sqllib/java:rw
+
+volumes:
+        db2java:

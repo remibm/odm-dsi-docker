@@ -1,0 +1,79 @@
+<server description="DSI Runtime">
+
+    <featureManager>
+        <feature>jdbc-4.0</feature>
+        <feature>restConnector-1.0</feature>
+        <feature>ssl-1.0</feature>
+        <feature>ia:iaRuntime-8.9.1</feature>
+        <feature>ia:iaDispatcher-8.9.1</feature>
+        <feature>ia:iaAnalytics-8.9.1</feature>
+        <feature>ia:iaHTTPGateway-8.9.1</feature>
+        <feature>ia:iaConnectivityInboundHTTP-8.9.1</feature>
+        <feature>ia:iaConnectivityOutboundHTTP-8.9.1</feature>
+        <feature>ia:iaDevelopment-8.9.1</feature>
+    </featureManager>
+
+    <logging
+        traceSpecification="com.ibm.ia.*=fine:com.ibm.rules.*=fine:*=info"
+        maxFiles="10" />
+
+    <httpEndpoint
+        id="defaultHttpEndpoint"
+        host="*"
+        httpPort="${http.port}"
+        httpsPort="${https.port}" />
+
+    <xsServer
+        catalogServer="true"
+        listenerPort="${ia.listenerPort}"
+        transport="XIO"
+        serverName="${ia.serverName}" />
+
+    <remoteFileAccess>
+        <!-- solutionManager and connectivityManager remote deployment
+             require remote write access to the server output directory -->
+        <writeDir>${server.output.dir}</writeDir>
+    </remoteFileAccess>
+
+    <ssl id="defaultSSLConfig"
+        keyStoreRef="defaultKeyStore"
+        sslProtocol="TLSv1.2" />
+
+    <keyStore
+        id="defaultKeyStore"
+        password="${ia.test.password}" />
+
+    <httpSession securityIntegrationEnabled="false"/>
+
+    <quickStartSecurity
+        userName="${ia.test.user}"
+        userPassword="${ia.test.password}" />
+
+    <authorization-roles id="iaAuthorization">
+        <security-role name="iaRESTWriter">
+            <special-subject type="EVERYONE" />
+        </security-role>
+        <security-role name="iaRESTReader">
+            <special-subject type="EVERYONE" />
+        </security-role>
+        <security-role name="iaHTTPGatewaySubmitter">
+            <special-subject type="EVERYONE" />
+        </security-role>
+        <security-role name="iaSolutionDeveloper">
+            <special-subject type="EVERYONE" />
+        </security-role>
+    </authorization-roles>
+
+    <serverCommands startServerTimeout="120" stopServerTimeout="120" />
+
+        <dataSource id="DB2" jndiName="jdbc/dsi">
+                <jdbcDriver>
+                        <library>
+                                <fileset dir="/opt/db2java" includes="db2jcc.jar"/>
+                        </library>
+                </jdbcDriver>
+                <properties.db2.jcc databaseName="DSIDB" serverName="db2express" portNumber="50000"/>
+        </dataSource>
+
+        <ia_persistence databaseType="DB2" datasourceName="jdbc/dsi" maxBatchSize="400" maxCacheAge="1000"/>
+</server>
