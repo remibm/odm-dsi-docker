@@ -6,16 +6,19 @@ services:
                         context: $BUILD_DIR
                         args:
                                 baseimg: ubuntu
+                                dsi_version: $DSI_VERSION
                 image: dsi-runtime
         dsi-runtime-openjdk:
                 build:
                         context: $BUILD_DIR
                         args:
                                 baseimg: openjdk:8
+                                dsi_version: $DSI_VERSION
                 image: dsi-runtime-openjdk
         dsi-runtime-ibmjava:
                 build:
                         context: $BUILD_DIR
                         args:
                                 baseimg: ibmjava:latest
+                                dsi_version: $DSI_VERSION
                 image: dsi-runtime-ibmjava

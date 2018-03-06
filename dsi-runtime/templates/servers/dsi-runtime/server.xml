@@ -3,13 +3,13 @@
     <featureManager>
         <feature>restConnector-1.0</feature>
         <feature>ssl-1.0</feature>
-        <feature>ia:iaRuntime-8.9.1</feature>
-        <feature>ia:iaDispatcher-8.9.1</feature>
-        <feature>ia:iaAnalytics-8.9.1</feature>
-        <feature>ia:iaHTTPGateway-8.9.1</feature>
-        <feature>ia:iaConnectivityInboundHTTP-8.9.1</feature>
-        <feature>ia:iaConnectivityOutboundHTTP-8.9.1</feature>
-        <feature>ia:iaDevelopment-8.9.1</feature>
+        <feature>ia:iaRuntime-_DSI_VERSION_</feature>
+        <feature>ia:iaDispatcher-_DSI_VERSION_</feature>
+        <feature>ia:iaAnalytics-_DSI_VERSION_</feature>
+        <feature>ia:iaHTTPGateway-_DSI_VERSION_</feature>
+        <feature>ia:iaConnectivityInboundHTTP-_DSI_VERSION_</feature>
+        <feature>ia:iaConnectivityOutboundHTTP-_DSI_VERSION_</feature>
+        <feature>ia:iaDevelopment-_DSI_VERSION_</feature>
     </featureManager>
 
     <logging
