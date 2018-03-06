@@ -1,7 +1,8 @@
 ARG baseimg
-ARG dsi_version
 
 FROM $baseimg
+
+ARG dsi_version
 
 RUN apt-get update --fix-missing
 RUN apt-get -y dist-upgrade
