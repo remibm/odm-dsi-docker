@@ -13,7 +13,7 @@
     </featureManager>
 
     <logging
-        traceSpecification="com.ibm.ia.*=fine:com.ibm.rules.*=fine:*=info"
+        traceSpecification="com.ibm.ia.*=info:com.ibm.rules.*=info:*=info"
         maxFiles="10" />
 
     <httpEndpoint

@@ -10,7 +10,7 @@
         catalogServerEndpoint="${ia.bootstrapEndpoints}" />
 
     <logging
-        traceSpecification="com.ibm.ia.*=fine:com.ibm.rules.*=info:*=info"
+        traceSpecification="com.ibm.ia.*=info:com.ibm.rules.*=info:*=info"
         maxFiles="5" />
 
     <httpEndpoint
