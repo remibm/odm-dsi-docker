@@ -31,11 +31,11 @@ docker-compose up
 Wait until the cluster is ready, the output should end with:
 ```
 dsi-runtime-container2    | [AUDIT   ] CWMBD9737I: Waiting for backing store to become available
-dsi-runtime-container1    | [AUDIT   ] CWMBD0000I: IBM Decision Server Insights version 8.9.0.201710162214
-dsi-runtime-container3    | [AUDIT   ] CWMBD0000I: IBM Decision Server Insights version 8.9.0.201710162214
-dsi-runtime-container1    | [AUDIT   ] CWWKF0012I: The server installed the following features: [ia:iaRuntime-8.9.0, jsp-2.2, servlet-3.1, ia:iaRulesEngineApi-1.4.0, ssl-1.0, jndi-1.0, ia:iaCommon-8.9.0, eXtremeScale.client-1.1, ia:iaAnalytics-8.9.0, appSecurity-2.0, jaxrs-1.1, restConnector-1.0, blueprint-1.0, ia:iaGateway-8.9.0, json-1.0, eXtremeScale.server-1.1, distributedMap-1.0, wab-1.0, ia:iaDispatcher-8.9.0, ia:iaRulesEngine-1.30.2, ia:iaRulesEngine-1.40.3].
+dsi-runtime-container1    | [AUDIT   ] CWMBD0000I: IBM Decision Server Insights version 8.9.1.201710162214
+dsi-runtime-container3    | [AUDIT   ] CWMBD0000I: IBM Decision Server Insights version 8.9.1.201710162214
+dsi-runtime-container1    | [AUDIT   ] CWWKF0012I: The server installed the following features: [ia:iaRuntime-8.9.1, jsp-2.2, servlet-3.1, ia:iaRulesEngineApi-1.4.0, ssl-1.0, jndi-1.0, ia:iaCommon-8.9.1, eXtremeScale.client-1.1, ia:iaAnalytics-8.9.1, appSecurity-2.0, jaxrs-1.1, restConnector-1.0, blueprint-1.0, ia:iaGateway-8.9.1, json-1.0, eXtremeScale.server-1.1, distributedMap-1.0, wab-1.0, ia:iaDispatcher-8.9.1, ia:iaRulesEngine-1.30.2, ia:iaRulesEngine-1.40.3].
 dsi-runtime-container1    | [AUDIT   ] CWWKF0011I: The server dsi-runtime-container is ready to run a smarter planet.
-dsi-runtime-container3    | [AUDIT   ] CWWKF0012I: The server installed the following features: [ia:iaRuntime-8.9.0, jsp-2.2, servlet-3.1, ia:iaRulesEngineApi-1.4.0, ssl-1.0, jndi-1.0, ia:iaCommon-8.9.0, eXtremeScale.client-1.1, ia:iaAnalytics-8.9.0, appSecurity-2.0, jaxrs-1.1, restConnector-1.0, blueprint-1.0, ia:iaGateway-8.9.0, json-1.0, eXtremeScale.server-1.1, distributedMap-1.0, wab-1.0, ia:iaDispatcher-8.9.0, ia:iaRulesEngine-1.30.2, ia:iaRulesEngine-1.40.3].
+dsi-runtime-container3    | [AUDIT   ] CWWKF0012I: The server installed the following features: [ia:iaRuntime-8.9.1, jsp-2.2, servlet-3.1, ia:iaRulesEngineApi-1.4.0, ssl-1.0, jndi-1.0, ia:iaCommon-8.9.1, eXtremeScale.client-1.1, ia:iaAnalytics-8.9.1, appSecurity-2.0, jaxrs-1.1, restConnector-1.0, blueprint-1.0, ia:iaGateway-8.9.1, json-1.0, eXtremeScale.server-1.1, distributedMap-1.0, wab-1.0, ia:iaDispatcher-8.9.1, ia:iaRulesEngine-1.30.2, ia:iaRulesEngine-1.40.3].
 dsi-runtime-container3    | [AUDIT   ] CWWKF0011I: The server dsi-runtime-container is ready to run a smarter planet.
 dsi-runtime-container1    | [AUDIT   ] CWWKT0016I: Web application available (default_host): http://2165c0eef080:9080/ibm/ia/rest/
 dsi-runtime-container1    | [AUDIT   ] CWWKT0016I: Web application available (default_host): http://2165c0eef080:9080/IBMJMXConnectorREST/
