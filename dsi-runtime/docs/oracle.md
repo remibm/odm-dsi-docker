@@ -30,8 +30,8 @@ Launching dsi-runtime-oracle (WebSphere Application Server 8.5.5.9/wlp-1.0.12.cl
 [AUDIT   ] CWPKI0803A: SSL certificate created in 1.485 seconds. SSL key file: /opt/dsi/runtime/wlp/usr/servers/dsi-runtime-oracle/resources/security/key.jks
 [AUDIT   ] TCPC0001I: TCP Channel XIOInboundTCP-8003915f7281eaba0000ffffac110002 is listening on host *  (IPv6) port 2809.
 [WARNING ] CWOBJ0207W: Hostname, 68f784040001, does not appear to be fully qualified. Multi-host connectivity may not function correctly.
-[AUDIT   ] CWMBD0000I: IBM Decision Server Insights version 8.9.0.201710162214
-[AUDIT   ] CWWKF0012I: The server installed the following features: [ia:iaRuntime-8.9.0, servlet-3.1, ssl-1.0, ia:iaDevelopment-8.9.0, jndi-1.0, eXtremeScale.client-1.1, jdbc-4.0, ia:iaAnalytics-8.9.0, jaxrs-1.1, blueprint-1.0, ia:iaGateway-8.9.0, ia:iaRulesEngine-1.40.3, jsp-2.2, ia:iaRulesEngineApi-1.4.0, ia:iaCommon-8.9.0, ia:iaHTTPGateway-8.9.0, restConnector-1.0, ia:iaConnectivityInboundHTTP-8.9.0, json-1.0, eXtremeScale.server-1.1, distributedMap-1.0, wab-1.0, websocket-1.1, ia:iaConnectivityOutboundHTTP-8.9.0, ia:iaDispatcher-8.9.0, ia:iaRulesEngine-1.30.2].
+[AUDIT   ] CWMBD0000I: IBM Decision Server Insights version 8.9.1.201710162214
+[AUDIT   ] CWWKF0012I: The server installed the following features: [ia:iaRuntime-8.9.1, servlet-3.1, ssl-1.0, ia:iaDevelopment-8.9.1, jndi-1.0, eXtremeScale.client-1.1, jdbc-4.0, ia:iaAnalytics-8.9.1, jaxrs-1.1, blueprint-1.0, ia:iaGateway-8.9.1, ia:iaRulesEngine-1.40.3, jsp-2.2, ia:iaRulesEngineApi-1.4.0, ia:iaCommon-8.9.1, ia:iaHTTPGateway-8.9.1, restConnector-1.0, ia:iaConnectivityInboundHTTP-8.9.1, json-1.0, eXtremeScale.server-1.1, distributedMap-1.0, wab-1.0, websocket-1.1, ia:iaConnectivityOutboundHTTP-8.9.1, ia:iaDispatcher-8.9.1, ia:iaRulesEngine-1.30.2].
 [AUDIT   ] CWWKF0011I: The server dsi-runtime-oracle is ready to run a smarter planet.
 [AUDIT   ] CWWKT0016I: Web application available (default_host): http://68f784040001:9080/ibm/ia/rest/
 [AUDIT   ] CWWKT0016I: Web application available (default_host): http://68f784040001:9080/ibm/ia/gateway/
