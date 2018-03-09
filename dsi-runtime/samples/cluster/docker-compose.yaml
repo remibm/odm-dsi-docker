@@ -2,12 +2,12 @@ version: '2'
 services:
         dsi-runtime-catalog:
                 container_name: dsi-runtime-catalog
-                image: $DSI_IMG
+                image: $DSI_IMAGE
                 command: ["/root/start.sh", "dsi-runtime-catalog"]
 
         dsi-runtime-container1:
                 container_name: dsi-runtime-container1
-                image: $DSI_IMG
+                image: $DSI_IMAGE
                 command: ["/root/start.sh", "dsi-runtime-container", "dsi-runtime-catalog"]
                 ports:
                         - "9443:9443"
@@ -16,7 +16,7 @@ services:
 
         dsi-runtime-container2:
                 container_name: dsi-runtime-container2
-                image: $DSI_IMG
+                image: $DSI_IMAGE
                 command: ["/root/start.sh", "dsi-runtime-container", "dsi-runtime-catalog"]
                 ports:
                         - "9444:9443"
@@ -25,7 +25,7 @@ services:
 
         dsi-runtime-container3:
                 container_name: dsi-runtime-container3
-                image: $DSI_IMG
+                image: $DSI_IMAGE
                 command: ["/root/start.sh", "dsi-runtime-container", "dsi-runtime-catalog"]
                 ports:
                         - "9445:9443"
@@ -34,7 +34,7 @@ services:
 
         dsi-runtime-inbound:
                 container_name: dsi-runtime-inbound
-                image: $DSI_IMG
+                image: $DSI_IMAGE
                 command: ["/root/start.sh", "dsi-runtime-inbound", "dsi-runtime-catalog", "dsi-runtime-container1"]
                 ports:
                         - "9090:9080"
@@ -47,7 +47,7 @@ services:
 
         dsi-runtime-outbound:
                 container_name: dsi-runtime-outbound
-                image: $DSI_IMG
+                image: $DSI_IMAGE
                 command: ["/root/start.sh", "cisOutbound", "dsi-runtime-catalog", "dsi-runtime-container1"]
                 ports:
                         - "9091:9080"

@@ -2,23 +2,7 @@ version: '3'
 
 services:
         dsi-runtime:
-                image: dsi-runtime
-                ports:
-                        - "${HTTP_PORT}:9080"
-                        - "${HTTPS_PORT}:9443"
-                environment:
-                        - LOGGING_TRACE_SPECIFICATION=$LOGGING_TRACE_SPECIFICATION
-
-        dsi-runtime-openjdk:
-                image: dsi-runtime-openjdk
-                ports:
-                        - "${HTTP_PORT}:9080"
-                        - "${HTTPS_PORT}:9443"
-                environment:
-                        - LOGGING_TRACE_SPECIFICATION=$LOGGING_TRACE_SPECIFICATION
-
-        dsi-runtime-ibmjava:
-                image: dsi-runtime-ibmjava
+                image: $DSI_IMAGE
                 ports:
                         - "${HTTP_PORT}:9080"
                         - "${HTTPS_PORT}:9443"

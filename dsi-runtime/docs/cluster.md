@@ -19,8 +19,8 @@ The directory `samples/cluster` contains an example of a DSI cluster based on
 Docker Compose. Used with Docker Swarm, the cluster can be hosted on multiple servers.
 The topology of the sample cluster is using 1 catalog server, 3 runtime servers, 1 inbound and 1
 outbound server. It can be modified by changing the file `docker-compose.yaml`.
-The dsi-runtime image used can be customized with environement variable `DSI_IMG` which default value is stored in `samples/cluster/.env`.
-For instance, for MacOS, `DSI_IMG=dsi-runtime-ibmjava`.
+The dsi-runtime image used can be customized with environement variable `DSI_IMAGE` which default value is stored in `samples/cluster/.env`.
+For instance, for MacOS, `DSI_IMAGE=dsi-runtime-ibmjava`.
 
 To start the DSI cluster:
 ```sh
