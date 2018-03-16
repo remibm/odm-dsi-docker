@@ -4,11 +4,11 @@
 
 It is possible to deploy a solution by using the `solutionManager` script
 from a DSI runtime container. It avoids the need to have an installation of DSI
-on the machine where is the .ESA file.
+on the machine where the .ESA file is hosted.
 
-First, copies the .ESA file `mysol.esa` to a directory `mylocaldropins`
+First, copy the .ESA file `mysol.esa` to a directory `/mylocaldropins`. 
 
-Then the `solutionManager` script can be ran with:
+Then the `solutionManager` script to deploy the solution on `dsi.hostname` can be run with:
 
 ```
 docker run -ti -v /mylocaldropins:/dropins dsi-runtime /dsi-cmd solutionManager deploy remote /dropins/mysol.esa --host=dsi.hostname --port=9443 --sslProtocol=TLSv1.2 --disableServerCertificateVerification=true --disableSSLHostnameVerification=true --username=tester --password=tester
