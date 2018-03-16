@@ -6,5 +6,11 @@ services:
                 ports:
                         - "${HTTP_PORT}:9080"
                         - "${HTTPS_PORT}:9443"
+                command: ["/root/start.sh", $DSI_TEMPLATE]
                 environment:
                         - LOGGING_TRACE_SPECIFICATION=$LOGGING_TRACE_SPECIFICATION
+                volumes:
+                        - volume-templates:/opt/dsi/runtime/wlp/templates/servers
+
+volumes:
+        volume-templates:

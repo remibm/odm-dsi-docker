@@ -84,19 +84,38 @@ docker run -p9443:9443 dsi-runtime-simple-sol
 ## Change the default configuration of DSI
 
 Depending on your needs, you might want to use another DSI configuration.
-
 It is possible to add multiple DSI configurations to the same Docker image.
-Each configuration has to be added in a separate sub-directory under the directory `<DSI_DOCKER_GIT>/templates/servers`.
+There are 3 ways to do this:
 
-To add a new DSI configuration in the Docker image:
- * Copy the files in `<DSI_DOCKER_GIT>/templates/servers/dsi-runtime`
-   to a new directory, for example `<DSI_DOCKER_GIT>/templates/servers/my-dsi-template`
- * Edit the files in `<DSI_DOCKER_GIT>/templates/servers/my-dsi-template`.
- * Rebuild the Docker image using the script `<DSI_DOCKER_GIT>/builds.sh`.
+### Add custom templates into the dsi-runtime image
 
-When running the DSI Docker container, the name of the DSI configuration must
-be passed as the first argument of the startup script:
+To do this, set the environment variable `DSI_TEMPLATES` to the path where the `servers` directory, which contains the templates, is located.
 
+For example, if the templates are in home/example/servers
 ```sh
-docker run -p9443:9443 --name my-dsi-runtime /root/start.sh my-dsi-template
+export DSI_TEMPLATES=home/example
 ```
+
+Then rebuild the Docker image using the script `<DSI_DOCKER_GIT>/build.sh`.
+
+Then, to run the single DSI runtime with a template, edit the `.env` file to define the variable `DSI_TEMPLATE` with the name of the template and simply run `docker-compose up dsi-runtime`.
+
+### Add custom templates into a specific image based on the dsi-runtime image
+
+After having built dsi-runtime image, create another image based on dsi-runtime that copy the templates in /opt/dsi/runtime/wlp/templates/servers.
+
+Create a Dockerfile.
+```sh
+FROM dsi-runtime
+COPY template /opt/dsi/runtime/wlp/templates/servers/template
+CMD /root/start.sh
+```
+
+Build the image using docker
+docker build -t myImage .
+
+### Pass custom templates to a dsi-runtime docker container
+
+Put your templates in the named volume `dsiruntime_volume-templates`.
+
+Then, to run the single DSI runtime with a template, edit the `.env` file to define the variable `DSI_TEMPLATE` with the name of the template and simply run `docker-compose up dsi-runtime`.
