@@ -1,12 +1,28 @@
 ## Advanced usage of DSI on Docker
 
+## Deployment of a DSI solution from Docker
+
+It is possible to deploy a solution by using the `solutionManager` script
+from a DSI runtime container. It avoids the need to have an installation of DSI
+on the machine where is the .ESA file.
+
+First, copies the .ESA file `mysol.esa` to a directory `mylocaldropins`
+
+Then the `solutionManager` script can be ran with:
+
+```
+docker run -ti -v /mylocaldropins:/dropins dsi-runtime /dsi-cmd solutionManager deploy remote /dropins/mysol.esa --host=dsi.hostname --port=9443 --sslProtocol=TLSv1.2 --disableServerCertificateVerification=true --disableSSLHostnameVerification=true --username=tester --password=tester
+```
+
+The `dsi-cmd` script can be used to run any usual DSI CLI (`solutionManager`, `propertyManager`, etc.) direcly from a Docker container.
+
 ## Container parameter customization using docker-compose
 
 DSI containers can be customized with specific parameters specified in `.env` file when running docker-compose.
 
 Customizable variables:
  * `LOGGING_TRACE_SPECIFICATION` sets logging specification in `server.xml` of container. See specific documentation about Liberty logging and trace [here](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html).
- 
+
 ## Persist deployed solutions
 
 As docker containers are stateless, deployed solutions in containers are not persisted.
