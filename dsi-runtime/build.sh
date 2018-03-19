@@ -38,6 +38,14 @@ mkdir -p "$BUILD_DIR_DSI_RUNTIME"
 echo "Copying DSI from $DSI_HOME_RUNTIME to $BUILD_DIR_DSI_RUNTIME."
 cp -rp "$DSI_HOME_RUNTIME/"* "$BUILD_DIR_DSI_RUNTIME"
 
+echo "Removing useless templates"
+rm -rf "$BUILD_DIR_DSI_RUNTIME/wlp/templates/servers/cisCatalog/"
+rm -rf "$BUILD_DIR_DSI_RUNTIME/wlp/templates/servers/cisCollectiveController/"
+rm -rf "$BUILD_DIR_DSI_RUNTIME/wlp/templates/servers/cisContainer/"
+rm -rf "$BUILD_DIR_DSI_RUNTIME/wlp/templates/servers/cisDev/"
+rm -rf "$BUILD_DIR_DSI_RUNTIME/wlp/templates/servers/cisInbound/"
+rm -rf "$BUILD_DIR_DSI_RUNTIME/wlp/templates/servers/defaultServer/"
+
 if [ -z "$2" ]; then
         if [[ "$OSTYPE" != "darwin"* ]] && [[ "$OSTYPE" != "cygwin" ]]; then
                 echo "Copying JDK to $BUILD_DIR_DSI."
