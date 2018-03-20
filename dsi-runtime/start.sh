@@ -46,6 +46,7 @@ fi
 echo "The DSI template $DSI_TEMPLATE is going to be used."
 
 SRV_XML="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/server.xml"
+GRID_DEPLOYMENT="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/grids/objectGridDeployment.xml"
 
 INTERNAL_IP=`hostname -I| sed 's/ //g'`
 
@@ -74,6 +75,11 @@ if [ ! -f "$SRV_XML" ]; then
         if [ ! -z "$DSI_JPROFILER" ]; then
                 jprofile_enable
         fi
+
+        if [ ! -z "$DSI_PARTITIONS_COUNT" ]; then
+                echo "Update DSI_PARTITIONS_COUNT to $DSI_PARTITIONS_COUNT"
+                sed -i "s/numberOfPartitions=\"[0-9]*\"/numberOfPartitions=\"$DSI_PARTITIONS_COUNT\"/g" "$GRID_DEPLOYMENT"
+        fi
 else
         echo "$SRV_XML already exist"
 fi
@@ -100,7 +106,7 @@ if [ ! -z "$3" ]; then
          RUNTIME_HOSTNAME="$3"
          while true ; do
                  echo Testing availability of grid on runtime server $RUNTIME_HOSTNAME before starting connectivity container
-                 GRID_ONLINE=`/opt/dsi/runtime/ia/bin/serverManager isonline --host=$RUNTIME_HOSTNAME --disableSSLHostnameVerification=true --disableServerCertificateVerification=true | egrep "is online" | wc -l` 
+                 GRID_ONLINE=`/opt/dsi/runtime/ia/bin/serverManager isonline --host=$RUNTIME_HOSTNAME --disableSSLHostnameVerification=true --disableServerCertificateVerification=true | egrep "is online" | wc -l`
                  if [ "$GRID_ONLINE" -eq 1 ]; then
                          break
                  fi
