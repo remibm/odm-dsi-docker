@@ -3,7 +3,7 @@
 	xmlns="http://ibm.com/ws/objectgrid/deploymentPolicy">
 	<objectgridDeployment objectgridName="com.ibm.ia">
 		<!-- numInitialContainers to the number of JVMs being started -->
-		<mapSet name="iaMaps" numberOfPartitions="5" numInitialContainers="1" minSyncReplicas="0" maxSyncReplicas="0" maxAsyncReplicas="0" developmentMode="true">
+		<mapSet name="iaMaps" numberOfPartitions="5" numInitialContainers="1" minSyncReplicas="0" maxSyncReplicas="0" maxAsyncReplicas="0" developmentMode="false">
 			<map ref="DelayTimer.*" />
 			<map ref="JobDelayTimer.*" />
 			<map ref="EventQueue.*" />
@@ -32,7 +32,7 @@
 		</mapSet>
 	</objectgridDeployment>
 	<objectgridDeployment objectgridName="com.ibm.ia.runtime.cluster">
-		<mapSet name="iaConfigMaps" placementScope="CONTAINER_SCOPE" developmentMode="true">
+		<mapSet name="iaConfigMaps" placementScope="CONTAINER_SCOPE" developmentMode="false">
 			<map ref="Config.*" />
 			<map ref="Runtime.*" />
 			<map ref="StaticRuntimeTokensStable"  />
@@ -41,7 +41,7 @@
 		</mapSet>
 	</objectgridDeployment>
 	<objectgridDeployment objectgridName="com.ibm.ia.preload">
-		<mapSet name="iaPreloadMaps" numberOfPartitions="5" numInitialContainers="1" minSyncReplicas="0" maxSyncReplicas="0" maxAsyncReplicas="0" developmentMode="true">
+		<mapSet name="iaPreloadMaps" numberOfPartitions="5" numInitialContainers="1" minSyncReplicas="0" maxSyncReplicas="0" maxAsyncReplicas="0" developmentMode="false">
 			<map ref="PreloadSummary" />
 			<map ref="PreloadBatches" />
 		</mapSet>
