@@ -8,13 +8,14 @@ on the machine where the .ESA file is hosted.
 
 First, copy the .ESA file `mysol.esa` to a directory `/mylocaldropins`. 
 
-Then the `solutionManager` script to deploy the solution on `dsi.hostname` can be run with:
+Assuming a `docker-compose.yaml` file including `dsi-runtime` service exists in current directory, 
+the solution can be deployed on `dsi.hostname` with:
 
 ```
-docker run -ti -v /mylocaldropins:/dropins dsi-runtime /dsi-cmd solutionManager deploy remote /dropins/mysol.esa --host=dsi.hostname --port=9443 --sslProtocol=TLSv1.2 --disableServerCertificateVerification=true --disableSSLHostnameVerification=true --username=tester --password=tester
+docker-compose run -v /mylocaldropins:/dropins dsi-runtime /dsi-cmd solutionManager deploy remote /dropins/mysol.esa --host=dsi.hostname --port=9443 --sslProtocol=TLSv1.2 --disableServerCertificateVerification=true --disableSSLHostnameVerification=true --username=tester --password=tester
 ```
 
-The `dsi-cmd` script can be used to run any usual DSI CLI (`solutionManager`, `propertyManager`, etc.) direcly from a Docker container.
+The `dsi-cmd` script can be used to run any usual DSI CLI (`solutionManager`, `propertyManager`, etc.) directly from a Docker container.
 
 ## Container parameter customization using docker-compose
 
