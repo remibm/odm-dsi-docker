@@ -4,7 +4,7 @@ services:
         dsi-runtime:
                 image: $DSI_IMAGE
                 hostname: dsi-runtime
-                domain: dsi
+                domainname: dsi
                 ports:
                         - "${HTTP_PORT}:9080"
                         - "${HTTPS_PORT}:9443"
