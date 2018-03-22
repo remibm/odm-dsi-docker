@@ -1,45 +1,23 @@
 #!/bin/bash
 
-# This script deploys the solution simple and the associated connectivity
-# configuration.
-#
-# The first argument is the installation directory of ODM Insights
-# The second argument is the hostname of the DSI Runtime.
-# The third argument is the port of the DSI Runtime.
-
-set -e
-
 function print_usage {
-        echo "USAGE: $0 <DSI_HOME> <DSI_HOSTNAME> <DSI_PORT>"
+        echo "USAGE: $0 <DSI_IP> <DSI_PORT>"
 }
 
-if [ -z "$1" ]; then
+if [ -z $2 ]; then
         print_usage
         exit 1
 else
-        DSI_HOME="$1"
-fi
-
-if [ -z "$2" ]; then
-        print_usage
-        exit 1
-else
-        DSI_HOSTNAME="$2"
-fi
-
-if [ -z "$3" ]; then
-        DSI_PORT="9443"
-else
-        DSI_PORT="$3"
+        DSI_IP="$1"
+        DSI_PORT="$2"
 fi
 
 SRC_DIR=`dirname $0`
-ESA="$SRC_DIR/simple_solution-0.0.esa"
-INCONN="$SRC_DIR/in-connectivity-server-configuration.xml"
+SRC_DIR=`realpath $SRC_DIR`
 
 SOL_MANAGER_OPTS="--sslProtocol=TLSv1.2 --disableServerCertificateVerification=true --disableSSLHostnameVerification=true --username=tester --password=tester"
-DSI_HOME_BIN="$DSI_HOME/runtime/ia/bin"
 
-$DSI_HOME_BIN/solutionManager deploy remote $ESA $SOL_MANAGER_OPTS --host=$DSI_HOSTNAME --port=$DSI_PORT
+echo "Deploying solution to $DSI_IP"
+docker-compose run -v $SRC_DIR:/dropins dsi-runtime /dsi-cmd solutionManager deploy remote /dropins/simple_solution-0.0.esa --host=$DSI_IP --port=$DSI_PORT $SOL_MANAGER_OPTS
 
-$DSI_HOME_BIN/connectivityManager deploy remote $ESA $INCONN $SOL_MANAGER_OPTS --host=$DSI_HOSTNAME --port=$DSI_PORT
+docker-compose run -v $SRC_DIR:/dropins dsi-runtime /dsi-cmd connectivityManager deploy remote /dropins/simple_solution-0.0.esa /dropins/in-connectivity-server-configuration.xml --host=$DSI_IP --port=$DSI_PORT $SOL_MANAGER_OPTS

@@ -1,6 +1,6 @@
 ## Advanced usage of DSI on Docker
 
-## Deployment of a DSI solution from Docker
+## Deployment of a DSI solution from a Docker container
 
 It is possible to deploy a solution by using the `solutionManager` script
 from a DSI runtime container. It avoids the need to have an installation of DSI

@@ -61,13 +61,14 @@ The name of this image will be `dsi-runtime-ibmjava` instead of `dsi-runtime`.
 Before using docker-compose, you will need to set environment variable `DSI_IMAGE` to `dsi-runtime-ibmjava` in `.env` file.
 
 In order to run containers or clusters on MacOS it is strongly advised to increase default values of CPU and memory in Docker menu `Preferences>Advanced`.
-Docker memory setting should be consistent with DSI container max memory heap (`-Xmx`) and actual memory use. 
+Docker memory setting should be consistent with DSI container max memory heap (`-Xmx`) and actual memory use.
 With default templates, we recommend at least 2Gb for each dsi-runtime-ibmjava container.
 
 ## Run a single DSI runtime with Docker Compose
 
 ```sh
-docker-compose up 
+cd $DSI_DOCKER_GIT/dsi-runtime/samples
+docker-compose up
 ```
 
 When DSI is started, the output ends with the following lines:
@@ -90,16 +91,24 @@ To change host ports, change `HTTP_PORT` and `HTTPS_PORT` variables in the `.env
 To deploy a solution and the connectivity configuration,
 the usual command line tools `solutionManager` and `connectivityManager` can be used.
 
-The sample script `solution_deploy.sh` can also be used to deploy a simple test solution and its connectivity configuration.
+In order to avoid using a DSI installation, it is also possible to deploy the
+solution by using a DSI runtime container. For more information see [advance.md](dsi-runtime/docs/advance.md).
+This is the way used by the script `solution_deploy.sh`
+
 In a separate command shell to the one you used to run the DSI container:
 ```sh
 cd $DSI_DOCKER_GIT/dsi-runtime/samples/simple
-./solution_deploy.sh $DSI_HOME localhost 9443
+./solution_deploy.sh $DSI_IP $DSI_PORT
 ```
 
-The first argument is the path to the installation directory of DSI.
-The second argument is the hostname of the DSI runtime.
-The third argument is the port of the DSI Runtime.
+The first argument `DSI_IP` is the IP address or the hostname of the DSI
+Runtime.
+As the DSI client is ran from the Docker container, `localhost` or the loopback
+address cannot be used. `docker inspect` can be used to determine the IP of
+the Docker container.
+
+The second argument `DSI_PORT` is the port of the DSI Runtime. By default,
+it is `9443`.
 
 The output of the command line should be similar to:
 ```
