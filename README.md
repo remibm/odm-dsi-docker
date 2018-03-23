@@ -102,10 +102,13 @@ cd $DSI_DOCKER_GIT/dsi-runtime/samples/simple
 ```
 
 The first argument `DSI_IP` is the IP address or the hostname of the DSI
-Runtime.
-As the DSI client is ran from the Docker container, `localhost` or the loopback
-address cannot be used. `docker inspect` can be used to determine the IP of
-the Docker container.
+Runtime. The DSI command is ran in the Docker container, so it is not possible
+to use the `localhost` or the loopback addresses.
+
+There are multiple ways to determine the IP adress of a container:
+* `docker inspect dsiruntime_dsi-runtime_1`
+* `docker run dsiruntime_dsi-runtime_1 hostname -I`
+
 
 The second argument `DSI_PORT` is the port of the DSI Runtime. By default,
 it is `9443`.
