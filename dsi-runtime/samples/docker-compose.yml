@@ -1,9 +1,0 @@
-version: '3'
-
-services:
-        dsi-runtime:
-                image: dsi-runtime
-                ports:
-                        - 9080:9080
-                        - 9443:9443
-                        - 2809:2809

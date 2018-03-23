@@ -67,7 +67,7 @@ With default templates, we recommend at least 2Gb for each dsi-runtime-ibmjava c
 ## Run a single DSI runtime with Docker Compose
 
 ```sh
-cd $DSI_DOCKER_GIT/dsi-runtime/samples
+cd $DSI_DOCKER_GIT/dsi-runtime
 docker-compose up
 ```
 

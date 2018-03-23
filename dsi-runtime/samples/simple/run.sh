@@ -1,24 +1,29 @@
 #!/bin/bash
 
+SRC_DIR=`dirname $0`
+
 function isonline() {
         SOL_MANAGER_OPTS="--host=$1 --sslProtocol=TLSv1.2 --disableServerCertificateVerification=true --disableSSLHostnameVerification=true --username=tester --password=tester"
+        pushd $SRC_DIR/../..
+        echo "Checking whether DSI is online"
         docker-compose run dsi-runtime /dsi-cmd serverManager isonline $SOL_MANAGER_OPTS
+        popd
 }
 
 function isSolutionReady() {
         SOL_MANAGER_OPTS="--host=$1 --sslProtocol=TLSv1.2 --disableServerCertificateVerification=true --disableSSLHostnameVerification=true --username=tester --password=tester"
+        pushd $SRC_DIR/../..
+        echo "Checking whether the solution is ready"
         docker-compose run dsi-runtime /dsi-cmd solutionManager isready simple_solution $SOL_MANAGER_OPTS
+        popd
 }
 
-SRC_DIR=`dirname $0`
-SAMPLES_DIR=$SRC_DIR/..
-
 echo "Starts single DSI Runtime"
-pushd $SAMPLES_DIR
-./dsi-single-run.sh
+../dsi-single-run.sh
+pushd $SRC_DIR/../..
 CONTAINER_ID=`docker-compose ps -q`
-echo "DSI container: $CONTAINER_ID"
 popd
+echo "DSI container: $CONTAINER_ID"
 
 DSI_IP=`docker exec $CONTAINER_ID hostname -I`
 echo "DSI IP: $DSI_IP"
