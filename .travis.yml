@@ -6,3 +6,5 @@ services:
 script:
 - cd dsi-runtime
 - docker-compose config
+- cd samples/cluster
+- docker-compose config
