@@ -1,0 +1,8 @@
+sudo: required
+
+services:
+  - docker
+
+script:
+- cd dsi-runtime
+- docker-compose config
