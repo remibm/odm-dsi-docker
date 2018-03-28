@@ -46,6 +46,7 @@ fi
 echo "The DSI template $DSI_TEMPLATE is going to be used."
 
 SRV_XML="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/server.xml"
+BOOTSTRAP_FILE="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/bootstrap.properties"
 GRID_DEPLOYMENT="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/grids/objectGridDeployment.xml"
 
 INTERNAL_IP=`hostname -I| sed 's/ //g'`
@@ -85,9 +86,8 @@ else
 fi
 
 if [[ ! -z "$DSI_CATALOG_HOSTNAME" && -f "$GRID_DEPLOYMENT" ]]; then
-        BOOTSTRAP_FILE=/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/bootstrap.properties
         echo "Modifying $BOOTSTRAP_FILE"
-        sed -i "s/ia.bootstrapEndpoints=localhost:2809/ia.bootstrapEndpoints=$DSI_CATALOG_HOSTNAME:2809/g" $BOOTSTRAP_FILE
+        sed -i "s/ia.bootstrapEndpoints=localhost:2809/ia.bootstrapEndpoints=$DSI_CATALOG_HOSTNAME:2809/g" "$BOOTSTRAP_FILE"
 fi
 
 if [ ! -z "$2" ]; then
@@ -118,13 +118,22 @@ fi
 echo "The IP of the DSI server is $INTERNAL_IP"
 
 if [ -f "$BOOTSTRAP_FILE" ]; then
-        sed -i "s/ia\.host\=localhost/ia\.host\=$INTERNAL_IP/" $BOOTSTRAP_FILE
+        sed -i "s/ia\.host\=localhost/ia\.host\=$INTERNAL_IP/" "$BOOTSTRAP_FILE"
         echo "Internal IP: $INTERNAL_IP"
 fi
 
 if [ "$LOGGING_TRACE_SPECIFICATION" !=  "" ] ; then
-        echo updating traceSpecification with $LOGGING_TRACE_SPECIFICATION
-        sed -i "s/traceSpecification=\".*\"/traceSpecification=$LOGGING_TRACE_SPECIFICATION/" $SRV_XML
+        echo updating traceSpecification with "$LOGGING_TRACE_SPECIFICATION"
+        sed -i "s/traceSpecification=\".*\"/traceSpecification=$LOGGING_TRACE_SPECIFICATION/" "$SRV_XML"
 fi
 
-/opt/dsi/runtime/wlp/bin/server run $DSI_TEMPLATE
+if [ "$DSI_USER" !=  "" ] ; then
+        echo updating DSI user with "$DSI_USER"
+        sed -i "s/ia.test.user=.*$/ia.test.user=$DSI_USER/" "$BOOTSTRAP_FILE"
+fi
+
+if [ "$DSI_PASSWORD" !=  "" ] ; then
+        echo updating DSI password with "$DSI_PASSWORD"
+        sed -i "s/ia.test.password=.*$/ia.test.password=$DSI_PASSWORD/" "$BOOTSTRAP_FILE"
+fi
+/opt/dsi/runtime/wlp/bin/server run "$DSI_TEMPLATE"

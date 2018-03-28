@@ -24,6 +24,8 @@ DSI containers can be customized with specific parameters specified in `.env` fi
 Customizable variables:
  * `LOGGING_TRACE_SPECIFICATION` sets logging specification in `server.xml` of container. See specific documentation about Liberty logging and trace [here](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html).
 
+ * `DSI_USER` and `DSI_PASSWORD` override default DSI credentials.
+
 ## Persist deployed solutions
 
 As docker containers are stateless, deployed solutions in containers are not persisted.
