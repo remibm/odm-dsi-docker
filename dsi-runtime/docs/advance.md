@@ -49,16 +49,13 @@ The solution is now in the volume and can be used by another container.
 
 ### Creation of a docker image with a deployed solution
 
-Run a Docker container:
+Run a single DSI runtime with Docker:
 ```sh
-docker run -p9443:9443 dsi-runtime
+cd $DSI_DOCKER_GIT/dsi-runtime
+docker run --name dsi-runtime -p9443:9443 dsi-runtime
 ```
 
-Deploy the solution in the running container:
-```sh
-cd $DSI_DOCKER_GIT/dsi-runtime/samples/simple
-./solution_deploy.sh $DSI_HOME localhost 9443
-```
+Deploy the solution in the running container.
 
 Stop the running DSI runtime in a clean way:
 ```sh

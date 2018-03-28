@@ -107,7 +107,7 @@ to use the `localhost` or the loopback addresses.
 
 There are multiple ways to determine the IP adress of a container:
 * `docker inspect dsiruntime_dsi-runtime_1`
-* `docker run dsiruntime_dsi-runtime_1 hostname -I`
+* `docker exec dsiruntime_dsi-runtime_1 hostname -i`
 
 
 The second argument `DSI_PORT` is the port of the DSI Runtime. By default,
