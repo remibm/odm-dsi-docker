@@ -1,0 +1,58 @@
+version: '3'
+services:
+        dsi-runtime-catalog:
+                container_name: dsi-runtime-catalog
+                image: $DSI_IMAGE
+                command: ["/root/start.sh", "dsi-runtime-catalog"]
+                ports:
+                        - 2809:2809
+
+        dsi-runtime:
+                image: $DSI_IMAGE
+                command: ["/root/start.sh", "dsi-runtime-container", "dsi-runtime-catalog"]
+                depends_on:
+                        - dsi-runtime-catalog
+                ports:
+                        - 9443
+                environment:
+                        - TCP_PORTS=9443
+
+        dsi-runtime-inbound:
+                image: $DSI_IMAGE
+                command: ["/root/start.sh", "dsi-runtime-inbound", "dsi-runtime-catalog", "wait_for_grid_availability"]
+                ports:
+                        - 9444
+                        - 9081
+                environment:
+                        - TCP_PORTS=9444,9081
+                depends_on:
+                        - dsi-runtime-catalog
+                        - dsi-runtime
+
+        dsi-runtime-outbound:
+                container_name: dsi-runtime-outbound
+                image: $DSI_IMAGE
+                command: ["/root/start.sh", "cisOutbound", "dsi-runtime-catalog", "wait_for_grid_availability"]
+                ports:
+                        - 9091:9080
+                        - 9451:9443
+                depends_on:
+                        - dsi-runtime-catalog
+                        - dsi-runtime
+
+        lb:
+                image: dockercloud/haproxy
+                links:
+                        - dsi-runtime
+                        - dsi-runtime-inbound
+                environment:
+                        - BALANCE=roundrobin
+                volumes:
+                        - /var/run/docker.sock:/var/run/docker.sock
+                ports:
+                        - 9443:9443
+                        - 9444:9444
+                        - 9081:9081
+                depends_on:
+                        - dsi-runtime-catalog
+                        - dsi-runtime

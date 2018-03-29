@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><server>
+    <!--Application definition for inbound connectivity application for solution: simple_solution-->
+    <application location="simple_solution-inbound.ear">
+        <application-bnd>
+            <security-role name="iaEventSubmitter">
+              <special-subject type="ALL_AUTHENTICATED_USERS" />            
+            </security-role>
+        </application-bnd>
+    </application>
+
+    <ia_inboundHttpEndpoint endpoint="simple_solution/endin"/>
+</server>
