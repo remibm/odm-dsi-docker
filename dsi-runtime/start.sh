@@ -3,7 +3,7 @@
 # This script is called when the docker container of DSI Runtime is started.
 # It creates the server configuration files from a WLP configuration template.
 # The first argument of the script is the name of the template. By default,
-# it is 'dsi-runtime'.
+# it is 'dsi-runtime-single'.
 # The second argument is the hostname of the catalog server.
 # The third optional argument is the hostname of a runtime container, used by connectivity container to check grid availability before starting
 
@@ -34,7 +34,7 @@ echo "JAVA_HOME=$JAVA_HOME"
 export PATH=$JAVA_HOME/bin:$PATH
 
 if [ -z "$1" ]; then
-        DSI_TEMPLATE="dsi-runtime"
+        DSI_TEMPLATE="dsi-runtime-single"
 else
         DSI_TEMPLATE="$1"
 fi

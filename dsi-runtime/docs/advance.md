@@ -59,7 +59,7 @@ Deploy the solution in the running container.
 
 Stop the running DSI runtime in a clean way:
 ```sh
-docker exec -ti dsi-runtime /opt/dsi/runtime/wlp/bin/server stop dsi-runtime
+docker exec -ti dsi-runtime /opt/dsi/runtime/wlp/bin/server stop dsi-runtime-single
 ```
 
 Create an image with the deployed solution:

@@ -73,7 +73,7 @@ docker-compose up
 
 When DSI is started, the output ends with the following lines:
 ```
-[AUDIT   ] CWWKF0011I: The server dsi-runtime is ready to run a smarter planet.
+[AUDIT   ] CWWKF0011I: The server dsi-runtime-single is ready to run a smarter planet.
 [AUDIT   ] CWWKT0016I: Web application available (default_host): http://58de6092c19c:9080/ibm/ia/debug/
 [AUDIT   ] CWWKT0016I: Web application available (default_host): http://58de6092c19c:9080/ibm/ia/gateway/
 [AUDIT   ] CWWKT0016I: Web application available (default_host): http://58de6092c19c:9080/IBMJMXConnectorREST/
