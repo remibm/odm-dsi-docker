@@ -73,7 +73,7 @@ docker-compose up
 
 When DSI is started, the output ends with the following lines:
 ```
-[AUDIT   ] CWWKF0011I: The server dsi-runtime is ready to run a smarter planet.
+[AUDIT   ] CWWKF0011I: The server dsi-runtime-single is ready to run a smarter planet.
 [AUDIT   ] CWWKT0016I: Web application available (default_host): http://58de6092c19c:9080/ibm/ia/debug/
 [AUDIT   ] CWWKT0016I: Web application available (default_host): http://58de6092c19c:9080/ibm/ia/gateway/
 [AUDIT   ] CWWKT0016I: Web application available (default_host): http://58de6092c19c:9080/IBMJMXConnectorREST/
@@ -107,7 +107,7 @@ to use the `localhost` or the loopback addresses.
 
 There are multiple ways to determine the IP adress of a container:
 * `docker inspect dsiruntime_dsi-runtime_1`
-* `docker run dsiruntime_dsi-runtime_1 hostname -I`
+* `docker exec dsiruntime_dsi-runtime_1 hostname -i`
 
 
 The second argument `DSI_PORT` is the port of the DSI Runtime. By default,

@@ -12,6 +12,8 @@ services:
                 environment:
                         - LOGGING_TRACE_SPECIFICATION=$LOGGING_TRACE_SPECIFICATION
                         - DSI_PARTITIONS_COUNT=$DSI_PARTITIONS_COUNT
+                        - DSI_USER=$DSI_USER
+                        - DSI_PASSWORD=$DSI_PASSWORD
                 volumes:
                         - volume-templates:/opt/dsi/runtime/wlp/templates/servers
                         - volume-solutions:/opt/dsi/runtime/wlp
