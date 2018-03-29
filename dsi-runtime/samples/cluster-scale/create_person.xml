@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:CreatePerson xmlns:m="http://www.ibm.com/ia/xmlns/default/SimpleSolution/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ibm.com/ia/xmlns/default/SimpleSolution/model ../xsd/namespace1/model.xsd ">
+  <m:name>ID</m:name>
+  <m:description>
+  </m:description>
+</m:CreatePerson>
