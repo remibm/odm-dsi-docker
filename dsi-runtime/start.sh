@@ -5,7 +5,7 @@
 # The first argument of the script is the name of the template. By default,
 # it is 'dsi-runtime-single'.
 # The second argument is the hostname of the catalog server.
-# The third optional argument is the hostname of a runtime container, used by connectivity container to check grid availability before starting
+# The third optional argument (which value is not constrained) is a flag used by connectivity containers to check grid availability before starting
 
 set -e
 
@@ -120,8 +120,8 @@ if [ ! -z "$2" ]; then
 fi
 
 if [ ! -z "$3" ]; then
-         RUNTIME_HOSTNAME="$3"
          while true ; do
+                 RUNTIME_HOSTNAME=`/opt/dsi/runtime/wlp/bin/xscmd.sh -c showPlacement -g com.ibm.ia -ms iaMaps  --catalogEndPoints $DSI_CATALOG_HOSTNAME:2809 | egrep "Container:.*dsi-runtime" |  sed "s/-dsi.*//;s/^.*: //" | head -1`
                  echo Testing availability of grid on runtime server $RUNTIME_HOSTNAME before starting connectivity container
                  GRID_ONLINE=`/opt/dsi/runtime/ia/bin/serverManager isonline --host=$RUNTIME_HOSTNAME --disableSSLHostnameVerification=true --disableServerCertificateVerification=true | egrep "is online" | wc -l`
                  if [ "$GRID_ONLINE" -eq 1 ]; then
