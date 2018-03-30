@@ -51,7 +51,7 @@ dsi-runtime-container2    | [AUDIT   ] CWMBD9738I: Backing store is available
 Deploy the "simple" solution:
 ```sh
 cd $DSI_DOCKER_GIT/dsi-runtime/samples/cluster
-./solution_deploy.sh $DSI_HOME
+./solution_deploy.sh
 ```
 
 The command deploys the solution to all the DSI runtimes and the connectivity to the DSI inbound
