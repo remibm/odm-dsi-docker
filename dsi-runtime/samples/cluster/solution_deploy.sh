@@ -10,10 +10,6 @@ function get_ip {
         echo `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $1`
 }
 
-function get_host_port {
-        echo `docker inspect -f '{{ (index (index .NetworkSettings.Ports "9443/tcp") 0).HostPort }}' $1`
-}
-
 function setvar {
         VALUE="${@:2}"
         eval export $1=\"$VALUE\"
@@ -56,25 +52,8 @@ setvar INBOUND `get_ip dsi-runtime-inbound`
 setvar SOL_MANAGER_OPTS "--sslProtocol=TLSv1.2 --disableServerCertificateVerification=true --disableSSLHostnameVerification=true --username=tester --password=tester"
 
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-	setvar CONTAINER1_PORT `get_host_port dsi-runtime-container1`
-	setvar CONTAINER2_PORT `get_host_port dsi-runtime-container2`
-	setvar CONTAINER3_PORT `get_host_port dsi-runtime-container3`
-	setvar INBOUND_PORT `get_host_port dsi-runtime-inbound`
-fi
+solution_deploy $CONTAINER1 9443
+solution_deploy $CONTAINER2 9443
+solution_deploy $CONTAINER3 9443
 
-#if [[ "$OSTYPE" == "darwin"* ]]; then
-#        solution_deploy localhost $CONTAINER1_PORT 
-#	solution_deploy localhost $CONTAINER2_PORT 
-#        solution_deploy localhost $CONTAINER3_PORT 
-#else
-	solution_deploy $CONTAINER1 9443
-	solution_deploy $CONTAINER2 9443
-	solution_deploy $CONTAINER3 9443
-#fi
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-	connectivity_deploy localhost $INBOUND_PORT
-else
-	connectivity_deploy $INBOUND 9443 
-fi
+connectivity_deploy $INBOUND 9443 
