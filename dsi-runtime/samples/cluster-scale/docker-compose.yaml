@@ -32,10 +32,12 @@ services:
         dsi-runtime-outbound:
                 container_name: dsi-runtime-outbound
                 image: $DSI_IMAGE
-                command: ["/root/start.sh", "cisOutbound", "dsi-runtime-catalog", "wait_for_grid_availability"]
+                command: ["/root/start.sh", "dsi-runtime-outbound", "dsi-runtime-catalog", "wait_for_grid_availability"]
                 ports:
-                        - 9091:9080
-                        - 9451:9443
+                        - 9082
+                        - 9445
+                environment:
+                        - TCP_PORTS=9445,9082
                 depends_on:
                         - dsi-runtime-catalog
                         - dsi-runtime
@@ -45,14 +47,17 @@ services:
                 links:
                         - dsi-runtime
                         - dsi-runtime-inbound
+                        - dsi-runtime-outbound
                 environment:
                         - BALANCE=roundrobin
                 volumes:
                         - /var/run/docker.sock:/var/run/docker.sock
                 ports:
-                        - 9443:9443
-                        - 9444:9444
-                        - 9081:9081
+                        - $HTTPS_RUNTIME:9443
+                        - $HTTPS_INBOUND:9444
+                        - $HTTP_INBOUND:9081
+                        - $HTTPS_OUTBOUND:9445
+                        - $HTTP_OUTBOUND:9082
                 depends_on:
                         - dsi-runtime-catalog
                         - dsi-runtime
