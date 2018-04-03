@@ -1,0 +1,126 @@
+<!-- 
+# Licensed Materials - Property of IBM
+#
+# "Restricted Materials of IBM"
+#
+# Copyright IBM Corp. 2013, 2016 All Rights Reserved.
+#
+# US Government Users Restricted Rights - Use, duplication or
+# disclosure restricted by GSA ADP Schedule Contract with
+# IBM Corp.
+-->
+<server description="CIS Outbound Server">
+
+    <featureManager>
+        <feature>appSecurity-2.0</feature>
+        <feature>restConnector-1.0</feature>
+        <feature>ssl-1.0</feature>
+        <feature>ia:iaConnectivityOutboundHTTP-_DSI_VERSION_</feature>
+    </featureManager>
+
+    <logging
+        traceSpecification="com.ibm.ia.*=info:com.ibm.rules.*=info:*=info"
+        maxFiles="5" />
+
+    <httpEndpoint
+        id="defaultHttpEndpoint"
+        host="*"
+        httpPort="${http.port}"
+        httpsPort="${https.port}" />
+
+    <ia_connectivity
+        catalogServerEndpoint="${ia.bootstrapEndpoints}" />
+
+    <remoteFileAccess>
+        <!-- solutionManager and connectivityManager remote deployment
+             require remote write access to the server output directory -->
+        <writeDir>${server.output.dir}</writeDir>
+    </remoteFileAccess>
+
+    <ssl id="defaultSSLConfig"
+        keyStoreRef="defaultKeyStore"
+        sslProtocol="TLSv1.2" />
+
+	<!-- *TODO* Add only when using collectives. For more information see http://www.ibm.com/support/knowledgecenter/SSEQTP_8.5.5/com.ibm.websphere.wlp.nd.multiplatform.doc/ae/twlp_sec_nist.html
+    <ssl id="controllerConnectionConfig"
+        sslProtocol="TLSv1.2"/>
+
+    <ssl id="memberConnectionConfig"
+        sslProtocol="TLSv1.2"/>
+    -->    
+
+    <!-- *TODO* Add SSL configuration including a key store and
+                optionally a trust store. For example:
+    
+    <keyStore
+        id="defaultKeyStore"
+        password="*INSERT_ENCODED_PASSWORD*" />
+    
+    -->
+
+    <!-- *TODO* Add basic or LDAP user registry configuration.
+                For example:
+    
+    <basicRegistry id="basic" realm="*INSERT_REALM_NAME*">
+        <user name="*INSERT_USER_NAME*" password="*INSERT_ENCODED_PASSWORD*"/>
+        <group name="*INSERT_GROUP_NAME*">
+            <member name="*INSERT_USER_NAME*"/>
+        </group>
+    </basicRegistry>
+    
+    -->
+
+    <!-- *TODO* Configure authorization roles for server administration.
+                For example:
+    
+    <administrator-role>
+        <group>*INSERT_GROUP_NAME*</group>
+    </administrator-role>
+    
+    -->
+
+    <!-- *TODO* If required, enable outbound connectivity using
+                WebSphere MQ 7.5 and supply the path to the
+                WebSphere MQ 7.5 Resource Adaptor.
+                For example:
+    
+    <featureManager>
+        <feature>ia:iaConnectivityOutboundJMS-8.9.2</feature>
+        <feature>wmqJmsClient-1.1</feature>
+    </featureManager>
+    
+    <variable
+        name="wmqJmsClient.rar.location"
+        value="*INSERT_PATH*/wmq.jmsra.rar" />
+    
+    -->
+
+    <!-- *TODO* If required, enable outbound connectivity using
+                WebSphere MQ 8 and supply the path to the
+                WebSphere MQ 8 Resource Adaptor.
+                For example:
+    
+    <featureManager>
+        <feature>ia:iaConnectivityOutboundJMS-8.9.2</feature>
+        <feature>wmqJmsClient-2.0</feature>
+        <feature>jms-2.0</feature>
+    </featureManager>
+    
+    <variable
+        name="wmqJmsClient.rar.location"
+        value="*INSERT_PATH*/wmq.jmsra.rar" />
+    
+    -->
+
+    <!-- *TODO* If required, enable outbound connectivity using 
+                WebSphere Application Server JMS messaging provider.
+                For example:
+    
+    <featureManager>
+        <feature>ia:iaConnectivityOutboundJMS-8.9.2</feature>
+        <feature>wasJmsClient-1.1</feature>
+    </featureManager>
+    
+    -->
+
+</server>
