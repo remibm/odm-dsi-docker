@@ -23,8 +23,8 @@ function setvar {
 
 
 # this script is meant to be executed from sample directory
-cd `dirname $0`
-SRC_DIR=`pwd`
+SRC_DIR=`dirname $0`
+cd SRC_DIR
 
 setvar ESA "simple_solution-0.0.esa"
 setvar INCONN "in-connectivity-server-configuration.xml"
