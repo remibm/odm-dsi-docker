@@ -16,6 +16,16 @@ function setvar {
         echo "$1=$VALUE"
 }
 
+function timeout {
+        let TIMEOUTCOUNT=$TIMEOUTCOUNT+1
+        if [ "$TIMEOUTCOUNT" == "$1" ] ; then
+                echo "exiting on timeout" 
+                exit 1
+        fi
+        echo "retry $TIMEOUTCOUNT / $1 "
+}
+
+
 cd `dirname $0`
 setvar SRC_DIR `pwd`
 
@@ -26,11 +36,13 @@ setvar INBOUND_NB 2
 docker-compose up -d --scale dsi-runtime=$RUNTIME_NB  --scale dsi-runtime-inbound=$INBOUND_NB
 
 # wait until DSI inbound connectivity is ready
+TIMEOUTCOUNT=0
 until [ "$INBOUND_READY" == "$INBOUND_NB" ]
 do
         echo "Waiting 5s before checking that we have $INBOUND_NB inbound services ready"
         sleep 5
         setvar INBOUND_READY `docker-compose logs dsi-runtime-inbound | grep CWWKT0016I | wc -l `
+        timeout 100
 done
 
 
@@ -39,12 +51,14 @@ $SRC_DIR/solution_deploy.sh
 
 # waiting the solution to be ready
 setvar DSI_IP `docker-compose logs dsi-runtime | egrep "IP of the DSI server is" | awk '{print $NF}' | sed "s/\n/ /" | perl -ne 's/\n/ /g;print'`
+TIMEOUTCOUNT=0
 until [ "$ISSOLREADY" == "1" ]
 do
 echo "Waiting 5s before checking that the solution is ready"
         sleep 5
         ISSOLREADY=`isSolutionReady $DSI_IP >/dev/null && echo 1 || echo 0`
         echo "Is solution ready result: $ISSOLREADY"
+        timeout 100
 done
 
 echo "Create a person"
