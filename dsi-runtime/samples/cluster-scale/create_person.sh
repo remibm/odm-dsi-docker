@@ -38,5 +38,4 @@ cat /tmp/$$.tmp
 
 curl --user tester:tester -k -H "Content-Type: application/xml" -d @/tmp/$$.tmp -X POST $URL
 
-
 rm /tmp/$$.tmp
