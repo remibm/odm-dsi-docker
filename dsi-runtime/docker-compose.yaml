@@ -14,6 +14,8 @@ services:
                         - DSI_PARTITIONS_COUNT=$DSI_PARTITIONS_COUNT
                         - DSI_USER=$DSI_USER
                         - DSI_PASSWORD=$DSI_PASSWORD
+                        - MAX_SYNC_REPLICAS=$MAX_SYNC_REPLICAS
+                        - MAX_ASYNC_REPLICAS=$MAX_ASYNC_REPLICAS
                 volumes:
                         - volume-templates:/opt/dsi/runtime/wlp/templates/servers
                         - volume-solutions:/opt/dsi/runtime/wlp

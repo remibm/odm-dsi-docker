@@ -77,15 +77,25 @@ if [ ! -f "$SRV_XML" ]; then
                 jprofile_enable
         fi
 
-        if [ ! -z "$DSI_PARTITIONS_COUNT" ]; then
+        if [[ ! -z "$DSI_PARTITIONS_COUNT" && -f "$GRID_DEPLOYMENT" ]]; then
                 echo "Update DSI_PARTITIONS_COUNT to $DSI_PARTITIONS_COUNT"
                 sed -i "s/numberOfPartitions=\"[0-9]*\"/numberOfPartitions=\"$DSI_PARTITIONS_COUNT\"/g" "$GRID_DEPLOYMENT"
+        fi
+
+        if [[ ! -z "$MAX_SYNC_REPLICAS" && -f "$GRID_DEPLOYMENT" ]] ; then
+                echo "Update MAX_SYNC_REPLICAS to $MAX_SYNC_REPLICAS"
+                sed -i "s/maxSyncReplicas=\"[0-9]*\"/maxSyncReplicas=\"$MAX_SYNC_REPLICAS\"/g" "$GRID_DEPLOYMENT"
+        fi
+
+        if [[ ! -z "$MAX_ASYNC_REPLICAS" && -f "$GRID_DEPLOYMENT" ]] ; then
+                echo "Update MAX_ASYNC_REPLICAS to $MAX_ASYNC_REPLICAS"
+                sed -i "s/maxAsyncReplicas=\"[0-9]*\"/maxAsyncReplicas=\"$MAX_ASYNC_REPLICAS\"/g" "$GRID_DEPLOYMENT"
         fi
 else
         echo "$SRV_XML already exist"
 fi
 
-if [[ ! -z "$DSI_CATALOG_HOSTNAME" && -f "$GRID_DEPLOYMENT" ]]; then
+if [ ! -z "$DSI_CATALOG_HOSTNAME" ]; then
         echo "Modifying $BOOTSTRAP_FILE"
         sed -i "s/ia.bootstrapEndpoints=localhost:2809/ia.bootstrapEndpoints=$DSI_CATALOG_HOSTNAME:2809/g" "$BOOTSTRAP_FILE"
 fi
@@ -136,4 +146,5 @@ if [ "$DSI_PASSWORD" !=  "" ] ; then
         echo updating DSI password with "$DSI_PASSWORD"
         sed -i "s/ia.test.password=.*$/ia.test.password=$DSI_PASSWORD/" "$BOOTSTRAP_FILE"
 fi
+
 /opt/dsi/runtime/wlp/bin/server run "$DSI_TEMPLATE"
