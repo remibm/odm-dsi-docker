@@ -56,4 +56,4 @@ solution_deploy $CONTAINER1 9443
 solution_deploy $CONTAINER2 9443
 solution_deploy $CONTAINER3 9443
 
-connectivity_deploy $INBOUND 9443 
+connectivity_deploy $INBOUND 9444
