@@ -12,8 +12,8 @@ else
         DSI_PORT="$2"
 fi
 
-SRC_DIR=`dirname $0`
-SRC_DIR=`realpath $SRC_DIR`
+cd `dirname $0`
+SRC_DIR=`pwd`
 
 SOL_MANAGER_OPTS="--sslProtocol=TLSv1.2 --disableServerCertificateVerification=true --disableSSLHostnameVerification=true --username=tester --password=tester"
 

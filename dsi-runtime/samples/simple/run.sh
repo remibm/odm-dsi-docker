@@ -53,4 +53,4 @@ sleep 30
 
 echo "Create a person"
 cd $SRC_DIR
-./create_person.sh $DSI_IP john.doe
+./create_person.sh localhost john.doe
