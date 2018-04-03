@@ -21,7 +21,7 @@ function solution_deploy {
         setvar RUNTIME_PORT "$2"
         echo deploying solution on "$DSI_IP:$RUNTIME_PORT"
         docker-compose run --rm -v $SRC_DIR:/dropins dsi-runtime-container1 /dsi-cmd solutionManager deploy remote /dropins/simple_solution-0.0.esa \
-        --host=$DSI_IP --port=$RUNTIME_PORT $SOL_MANAGER_OPTS || echo "Deploy failed, solution could be already deployed on $DSI_IP"
+        --host=$DSI_IP --port=$RUNTIME_PORT $SOL_MANAGER_OPTS || echo "Solution deployment failed on $DSI_IP"
 }
 
 function connectivity_deploy {
@@ -30,7 +30,7 @@ function connectivity_deploy {
         echo deploying connectivity on "$DSI_IP:$INBOUND_PORT"
         docker-compose run --rm -v $SRC_DIR:/dropins dsi-runtime-container1 /dsi-cmd connectivityManager deploy remote /dropins/simple_solution-0.0.esa \
         /dropins/in-connectivity-server-configuration.xml --server=dsi-runtime-inbound --host=$DSI_IP --port=$INBOUND_PORT $SOL_MANAGER_OPTS  \
-        || echo "Deploy failed, connectivity could be already deployed on $DSI_IP"
+        || echo "Connectivity deployment failed on $DSI_IP"
 
 }
 
