@@ -61,5 +61,8 @@ echo "Waiting 5s before checking that the solution is ready"
         timeout 100
 done
 
-echo "Create a person"
-$SRC_DIR/create_person.sh john.doe
+LIST=( "Amanda" "Bob" "Cindy" "Dimitri" "Eva" "Fabio" "Ginni" "Hugh" "Irene" "Keanu" )
+for PERSON in "${LIST[@]}" ; do 
+        echo "Create $PERSON"
+        $SRC_DIR/create_person.sh  $PERSON
+done
