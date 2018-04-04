@@ -6,6 +6,8 @@ services:
                 command: ["/root/start.sh", "dsi-runtime-catalog"]
                 ports:
                         - 2809:2809
+                environment:
+                        - LOGGING_TRACE_SPECIFICATION=$LOGGING_TRACE_SPECIFICATION
 
         dsi-runtime:
                 image: $DSI_IMAGE
@@ -16,6 +18,13 @@ services:
                         - 9443
                 environment:
                         - TCP_PORTS=9443
+                        - LOGGING_TRACE_SPECIFICATION=$LOGGING_TRACE_SPECIFICATION
+                        - DSI_USER=$DSI_USER
+                        - DSI_PASSWORD=$DSI_PASSWORD
+                        - DSI_PARTITIONS_COUNT=$DSI_PARTITIONS_COUNT
+                        - MIN_RUNTIME_NUMBER=$MIN_RUNTIME_NUMBER
+                        - MAX_SYNC_REPLICAS=$MAX_SYNC_REPLICAS
+                        - MAX_ASYNC_REPLICAS=$MAX_ASYNC_REPLICAS
 
         dsi-runtime-inbound:
                 image: $DSI_IMAGE
@@ -25,6 +34,9 @@ services:
                         - 9081
                 environment:
                         - TCP_PORTS=9444,9081
+                        - LOGGING_TRACE_SPECIFICATION=$LOGGING_TRACE_SPECIFICATION
+                        - DSI_USER=$DSI_USER
+                        - DSI_PASSWORD=$DSI_PASSWORD
                 depends_on:
                         - dsi-runtime-catalog
                         - dsi-runtime
@@ -38,6 +50,9 @@ services:
                         - 9445
                 environment:
                         - TCP_PORTS=9445,9082
+                        - LOGGING_TRACE_SPECIFICATION=$LOGGING_TRACE_SPECIFICATION
+                        - DSI_USER=$DSI_USER
+                        - DSI_PASSWORD=$DSI_PASSWORD
                 depends_on:
                         - dsi-runtime-catalog
                         - dsi-runtime
