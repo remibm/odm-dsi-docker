@@ -89,6 +89,11 @@ if [ ! -f "$SRV_XML" ]; then
                 sed -i "s/numberOfPartitions=\"[0-9]*\"/numberOfPartitions=\"$DSI_PARTITIONS_COUNT\"/g" "$GRID_DEPLOYMENT"
         fi
 
+        if [[ ! -z "$MIN_RUNTIME_NUMBER" && -f "$GRID_DEPLOYMENT" ]]; then
+                echo "Update MIN_RUNTIME_NUMBER to $MIN_RUNTIME_NUMBER"
+                sed -i "s/numInitialContainers=\"[0-9]*\"/numInitialContainers=\"$MIN_RUNTIME_NUMBER\"/g" "$GRID_DEPLOYMENT"
+        fi
+
         if [[ ! -z "$MAX_SYNC_REPLICAS" && -f "$GRID_DEPLOYMENT" ]] ; then
                 echo "Updating MAX_SYNC_REPLICAS to $MAX_SYNC_REPLICAS"
                 sed -i "s/maxSyncReplicas=\"[0-9]*\"/maxSyncReplicas=\"$MAX_SYNC_REPLICAS\"/g" "$GRID_DEPLOYMENT"
