@@ -32,8 +32,11 @@ setvar SRC_DIR `pwd`
 echo "Starts DSI Runtime Cluster"
 setvar RUNTIME_NB 3
 setvar INBOUND_NB 2
+setvar OUTBOUND_NB 2
 
-docker-compose up -d --scale dsi-runtime=$RUNTIME_NB  --scale dsi-runtime-inbound=$INBOUND_NB
+docker-compose up -d --scale dsi-runtime=$RUNTIME_NB  \
+        --scale dsi-runtime-inbound=$INBOUND_NB \
+        --scale dsi-runtime-outbound=$OUTBOUND_NB
 
 # wait until DSI inbound connectivity is ready
 TIMEOUTCOUNT=0

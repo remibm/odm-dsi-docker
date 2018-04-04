@@ -42,7 +42,6 @@ services:
                         - dsi-runtime
 
         dsi-runtime-outbound:
-                container_name: dsi-runtime-outbound
                 image: $DSI_IMAGE
                 command: ["/root/start.sh", "dsi-runtime-outbound", "dsi-runtime-catalog", "wait_for_grid_availability"]
                 ports:
