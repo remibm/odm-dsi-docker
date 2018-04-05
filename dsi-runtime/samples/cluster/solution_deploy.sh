@@ -39,8 +39,8 @@ if [[ "$#" -ne 0 ]]; then
         exit 1
 fi
 
-SRC_DIR=`dirname $0`
-cd SRC_DIR
+cd `dirname $0`
+SRC_DIR=`pwd -P`
  
 setvar ESA "$SRC_DIR/simple_solution-0.0.esa"
 setvar INCONN "$SRC_DIR/in-connectivity-server-configuration.xml"
