@@ -53,7 +53,7 @@ echo "Deploys solution"
 $SRC_DIR/solution_deploy.sh 
 
 # waiting the solution to be ready
-setvar DSI_IP `docker-compose logs dsi-runtime | egrep "IP of the DSI server is" | awk '{print $NF}' | sed "s/\n/ /" | perl -ne 's/\n/ /g;print'`
+setvar DSI_IP `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker-compose ps -q dsi-runtime) | head -1`
 TIMEOUTCOUNT=0
 until [ "$ISSOLREADY" == "1" ]
 do
