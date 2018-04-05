@@ -13,7 +13,7 @@ else
 fi
 
 cd `dirname $0`
-SRC_DIR=`pwd`
+SRC_DIR=`pwd -P`
 
 SOL_MANAGER_OPTS="--sslProtocol=TLSv1.2 --disableServerCertificateVerification=true --disableSSLHostnameVerification=true --username=tester --password=tester"
 
