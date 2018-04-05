@@ -29,8 +29,8 @@ cd $SRC_DIR
 setvar ESA "simple_solution-0.0.esa"
 setvar INCONN "in-connectivity-server-configuration.xml"
 
-setvar RUNTIME_IPS `docker-compose logs dsi-runtime | egrep "IP of the DSI server is" | awk '{print $NF}' | sed "s/\n/ /" | perl -ne 's/\n/ /g;print'`
-setvar INBOUND_IPS `docker-compose logs dsi-runtime-inbound | egrep "IP of the DSI server is" | awk '{print $NF}' | sed "s/\n/ /" | perl -ne 's/\n/ /g;print'`
+setvar RUNTIME_IPS `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker-compose ps -q dsi-runtime) | sed "s/\n/ /" | perl -ne 's/\n/ /g;print'`
+setvar INBOUND_IPS `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker-compose ps -q dsi-runtime-inbound) | sed "s/\n/ /" | perl -ne 's/\n/ /g;print'`
 
 setvar RUNTIME_PORT 9443
 setvar INBOUND_PORT 9444
