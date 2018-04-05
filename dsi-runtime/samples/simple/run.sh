@@ -15,8 +15,6 @@ function isSolutionReady() {
         docker-compose run dsi-runtime /dsi-cmd solutionManager isready simple_solution $SOL_MANAGER_OPTS
 }
 
-cd $SRC_DIR
-
 echo "Starts single DSI Runtime"
 ../dsi-single-run.sh
 
