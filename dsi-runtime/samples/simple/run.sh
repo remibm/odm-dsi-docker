@@ -2,8 +2,8 @@
 
 set -e
 
-SRC_DIR=`dirname $0`
-SRC_DIR=`realpath $SRC_DIR`
+cd `dirname $0`
+SRC_DIR=`pwd -P`
 
 function isonline() {
         SOL_MANAGER_OPTS="--host=$1 --sslProtocol=TLSv1.2 --disableServerCertificateVerification=true --disableSSLHostnameVerification=true --username=tester --password=tester"
