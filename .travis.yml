@@ -10,3 +10,5 @@ script:
 - docker-compose config
 - cd ../../samples/nodejs
 - docker-compose config
+- cd ../cluster-scale
+- docker-compose config
