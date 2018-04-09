@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: simple_solution.SimpleRules
+Bundle-Version: 0.0.0
+

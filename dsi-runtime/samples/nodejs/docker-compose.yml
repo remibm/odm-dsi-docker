@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+        dsi-runtime:
+                image: dsi-runtime
+                hostname: dsi-runtime
+                domainname: dsi
+                command: ["/root/start.sh", $DSI_TEMPLATE]
+                environment:
+                        - LOGGING_TRACE_SPECIFICATION=$LOGGING_TRACE_SPECIFICATION
+                        - DSI_PARTITIONS_COUNT=$DSI_PARTITIONS_COUNT
+        nodejs-bridge:
+                image: nodejs-bridge
+                ports:
+                        - "8080:8080"

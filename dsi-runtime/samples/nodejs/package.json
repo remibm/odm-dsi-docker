@@ -1,0 +1,16 @@
+{
+  "name": "docker_web_app",
+  "version": "1.0.0",
+  "description": "DSI Outbound",
+  "author": "Jean-Philippe Orsini <orsinije@fr.ibm.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.1",
+    "promise": "^8.0.1",
+    "request": "^2.85.0",
+    "socket.io": "^2.0.4"
+  }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ibm.ia.designer.berl:BerlRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.ibm.ia.designer.berl="http://com.ibm.ia.designer/model/berl.ecore">
+  <name>Hello</name>
+  <uuid>b6f9c6ff-aa44-45a3-b05c-ac32ecf7583b</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[
+when a sayHello occurs 
+then
+print "Hello " + the name of the person of this sayHello ; 
+emit a new message where 
+	the description is "hello" , 	
+	the person is the person of this sayHello ;
+]]></definition>
+</com.ibm.ia.designer.berl:BerlRule>

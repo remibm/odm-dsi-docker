@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+IBM-IA-SolutionLocale: en_US
+IBM-IA-SolutionVersion: 0.0
+IBM-IA-SolutionName: simple_solution
+

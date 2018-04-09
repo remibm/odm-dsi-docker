@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><server>
+    <!--Application definition for inbound connectivity application for solution: simple_solution-->
+    <application location="simple_solution-inbound.ear">
+        <application-bnd>
+            <security-role name="iaEventSubmitter"/>
+        </application-bnd>
+    </application>
+
+    <ia_inboundHttpEndpoint endpoint="simple_solution/endin"/>
+
+    <ia_outboundHttpEndpoint endpoint="simple_solution/HTTPTransactionOutputEndPoint" url="http://nodejs-bridge:8080/out"/>
+
+    <ia_outboundHttpEndpoint endpoint="simple_solution/endout" url="http://nodejs-bridge:8080/out"/>
+</server>
