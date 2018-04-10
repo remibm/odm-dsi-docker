@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>SimpleRules</name>
+	<comment></comment>
+	<projects>
+		<project>SimpleSolution</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.ibm.ia.designer.core.AgentProjectBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>ilog.rules.studio.model.ruleBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.ibm.ia.designer.core.Agent</nature>
+		<nature>ilog.rules.studio.model.ruleNature</nature>
+	</natures>
+</projectDescription>

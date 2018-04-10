@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:RuleProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore" xmlns:ilog.rules.studio.model.bom="http://ilog.rules.studio/model/bom.ecore" xmlns:ilog.rules.studio.model.xom="http://ilog.rules.studio/model/xom.ecore" buildMode="DecisionEngine">
+  <name>SimpleRules</name>
+  <uuid>8ed14baf-4dfa-4164-beb4-68290995ecf9</uuid>
+  <outputLocation>output</outputLocation>
+  <categories>any</categories>
+  <paths xsi:type="ilog.rules.studio.model.xom:XOMPath" pathID="XOM">
+    <entries xsi:type="ilog.rules.studio.model.xom:LibraryXOMPathEntry" name="org.eclipse.jdt.launching.JRE_CONTAINER" url="file:org.eclipse.jdt.launching.JRE_CONTAINER" kind="LIBRARY"/>
+    <entries xsi:type="ilog.rules.studio.model.xom:SystemXOMPathEntry" name="SimpleSolution" url="platform:/SimpleSolution" kind="RULE_PROJECT"/>
+  </paths>
+  <paths xsi:type="ilog.rules.studio.model.bom:BOMPath" pathID="BOM">
+    <entries xsi:type="ilog.rules.studio.model.bom:ProjectBOMEntry" name="SimpleSolution" url="platform:/SimpleSolution" kind="RULE_PROJECT">
+      <ruleProject href="SimpleSolution#944badc1-c55d-4b3e-90e5-f2214d865939"/>
+    </entries>
+  </paths>
+  <parameters name="entity" type="simple.Person" verbalization="the person" direction="IN_OUT"/>
+  <modelFolders xsi:type="ilog.rules.studio.model.base:SourceFolder">
+    <name>rules</name>
+  </modelFolders>
+  <modelFolders xsi:type="ilog.rules.studio.model.bom:BOMFolder">
+    <name>bom</name>
+  </modelFolders>
+  <modelFolders xsi:type="ilog.rules.studio.model.base:ResourceFolder">
+    <name>resources</name>
+  </modelFolders>
+</ilog.rules.studio.model.base:RuleProject>

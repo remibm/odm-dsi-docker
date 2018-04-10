@@ -1,0 +1,14 @@
+// Connectivity definitions for the solution
+define inbound binding 'in'
+with description "description"
+, 
+	using 
+		message format application/json , 
+		protocol HTTP , 
+	accepting any event . 
+	
+define inbound HTTP endpoint 'endin'
+ 
+	using 
+		binding 'in' , 
+	url path "/in/simple" . 

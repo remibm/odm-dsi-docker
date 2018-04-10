@@ -8,3 +8,5 @@ script:
 - docker-compose config
 - cd samples/cluster
 - docker-compose config
+- cd ../../samples/nodejs
+- docker-compose config

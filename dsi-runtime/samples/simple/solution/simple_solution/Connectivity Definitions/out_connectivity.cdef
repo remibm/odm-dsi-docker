@@ -1,0 +1,16 @@
+// Connectivity definitions for the solution
+
+define outbound binding 'out'
+with description "description"
+, using 
+		message format application/json ,
+		protocol HTTP , delivering events : 
+		- message .
+		
+		
+define outbound HTTP endpoint 'endout'
+	with 
+		description "description",
+	using 
+		binding 'out', 
+	url "http://nodejs-bridge/out". 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>simple_solution</name>
+	<comment></comment>
+	<projects>
+		<project>SimpleSolution</project>
+		<project>simple_solution - Java Model</project>
+		<project>SimpleRules</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.ibm.ia.designer.core.SolutionProjectBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.ibm.ia.designer.core.Solution</nature>
+	</natures>
+</projectDescription>

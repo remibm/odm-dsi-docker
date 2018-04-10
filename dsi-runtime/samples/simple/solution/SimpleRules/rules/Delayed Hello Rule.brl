@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ibm.ia.designer.berl:BerlRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.ibm.ia.designer.berl="http://com.ibm.ia.designer/model/berl.ecore">
+  <name>Delayed Hello Rule</name>
+  <uuid>82458056-b8cf-4128-a60c-6a20d6727e74</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[
+when a sayHello has occurred 1 minutes ago 
+then 
+print "Delayed Hello " + the name of the person of this sayHello ; 
+emit a new message where 
+	the name is the name of the person of this sayHello ;]]></definition>
+</com.ibm.ia.designer.berl:BerlRule>
