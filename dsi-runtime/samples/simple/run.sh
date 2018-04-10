@@ -52,3 +52,6 @@ sleep 30
 echo "Create a person"
 cd $SRC_DIR
 ./create_person.sh localhost john.doe
+
+echo "Waiting 5s before verifying that the entity has been created"
+curl -k -H "Accept: application/json" https://localhost:9443/ibm/ia/rest/solutions/simple_solution/entity-types/simple.Person/entities/john.doe
