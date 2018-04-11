@@ -1,0 +1,15 @@
+<object xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ibm.com/ia/Entity" type="simple.Person">
+  <attribute name="$CreationTime">
+    <null/>
+  </attribute>
+  <attribute name="$IdAttrib">
+    <string>name</string>
+  </attribute>
+  <attribute name="description">
+    <string>DESCRIPTION</string>
+  </attribute>
+  <attribute name="name">
+    <string>ID</string>
+  </attribute>
+
+</object>
