@@ -29,9 +29,10 @@ DSI_HOME="/opt/dsi"
 if [ -z "$JAVA_HOME" ]; then
         export JAVA_HOME="$DSI_HOME/jdk/jre"
 fi
-
 echo "JAVA_HOME=$JAVA_HOME"
+
 export PATH=$JAVA_HOME/bin:$PATH
+echo "PATH=$PATH"
 
 if [ -z "$1" ]; then
         DSI_TEMPLATE="dsi-runtime-single"
@@ -52,8 +53,14 @@ GRID_DEPLOYMENT="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/grids/objectGrid
 INTERNAL_IP=`hostname -I| sed 's/ //g'`
 
 if [ ! -f "$SRV_XML" ]; then
-        echo "Create the DSI server $DSI_TEMPLATE"
         echo "JAVA_HOME=$JAVA_HOME" > /opt/dsi/runtime/wlp/etc/server.env
+
+        DSI_VERSION=`/opt/dsi/runtime/wlp/bin/productInfo featureInfo|grep iaRuntime-|sed 's/iaRuntime-\(.*\) .*/\1/g'`
+        echo "DSI_VERSION=$DSI_VERSION"
+
+        find /opt/dsi/runtime/wlp/templates/servers/ -name "server.xml" -exec sed -i "s/_DSI_VERSION_/$DSI_VERSION/g" {} \;
+
+        echo "Create the DSI server $DSI_TEMPLATE"
         /opt/dsi/runtime/wlp/bin/server create $DSI_TEMPLATE --template=$DSI_TEMPLATE || echo "$DSI_TEMPLATE was already created"
         echo "WLP server $DSI_TEMPLATE has been created"
 

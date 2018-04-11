@@ -16,6 +16,5 @@ RUN mkdir -p /opt
 ADD /opt /opt
 
 RUN sed -i "s/\/bin\/sh/\/bin\/bash/g" "/opt/dsi/runtime/wlp/bin/xscmd.sh"
-RUN find /opt/dsi/runtime/wlp/templates/servers/ -name "server.xml" -exec sed -i "s/_DSI_VERSION_/$dsi_version/g" {} \;
 
 CMD /root/start.sh
