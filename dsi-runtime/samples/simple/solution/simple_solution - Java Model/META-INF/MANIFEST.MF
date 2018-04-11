@@ -1,6 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
+Bundle-Name: simple_solution - Java Model
+Bundle-SymbolicName: simple_solution.modelExecutable
 Bundle-Version: 0.0.0.qualifier
+Bundle-ClassPath: model.jar
 Export-Package: com.ibm.rules.generated;version="0.0.0.qualifier",
  com.ibm.rules.generated.dataie;version="0.0.0.qualifier",
  com.ibm.rules.generated.xml;version="0.0.0.qualifier",
