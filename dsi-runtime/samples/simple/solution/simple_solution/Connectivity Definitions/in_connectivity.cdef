@@ -11,4 +11,15 @@ define inbound HTTP endpoint 'endin'
  
 	using 
 		binding 'in' , 
-	url path "/in/simple" . 
+	url path "/in/simple" .
+	
+	
+define inbound binding 'in_json'
+with description "description", 
+using message format application/json , 
+protocol HTTP , 
+accepting any event . 
+	
+define inbound HTTP endpoint 'endin_json'
+using binding 'in_json' , 
+url path "/in/simple_json" .  

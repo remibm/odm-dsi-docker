@@ -1,0 +1,7 @@
+{
+                "$class": "simple.SayHello",
+                "person": {
+                                "key": "john.doe",
+                                "type": "simple.Person"
+                        }
+}

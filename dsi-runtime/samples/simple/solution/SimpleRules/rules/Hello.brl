@@ -3,10 +3,8 @@
   <name>Hello</name>
   <uuid>b6f9c6ff-aa44-45a3-b05c-ac32ecf7583b</uuid>
   <locale>en_US</locale>
-  <definition><![CDATA[
-when a sayHello occurs 
+  <definition><![CDATA[when a sayHello occurs 
 then
 print "Hello " + the name of the person of this sayHello ; 
-emit a new message where 
-	the name is the name of the person of this sayHello ;]]></definition>
+]]></definition>
 </com.ibm.ia.designer.berl:BerlRule>

@@ -40,16 +40,20 @@ public class Message
         property "xsd.support" "true"
         property "xsd.targetNamespace" "http://www.ibm.com/ia/xmlns/default/SimpleSolution/model"
 {
-    public string name
-                property "xsd.name" "name"
+    public string description
+                property "xsd.name" "description"
                 property "xsd.order" "0";
+    public simple.Person person
+                property "xsd.name" "person"
+                property "xsd.order" "1"
+                property "xsd.useMapping" "true";
     public java.time.ZonedDateTime timestamp
                 property "ia.timestamp" "true"
                 property "xsd.name" "timestamp"
-                property "xsd.order" "1";
+                property "xsd.order" "2";
     public Message(java.time.ZonedDateTime timestamp)
                 property "dataio.default" "true";
-    public Message(string name, java.time.ZonedDateTime timestamp)
+    public Message(string description, simple.Person person, java.time.ZonedDateTime timestamp)
                 property groups "BALA"
                 property prototype "true";
 }

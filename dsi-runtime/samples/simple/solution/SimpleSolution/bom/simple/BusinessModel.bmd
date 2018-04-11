@@ -11,7 +11,8 @@ a sayHello is a business event.
 a sayHello is related to a person . 
  
 a message is a business event.
-a message has a name.
+a message has a description.
+a message is related to a person .
 ]]></Bmd>
     <Bmi><![CDATA[a person is initialized from a createPerson ,
  where this person comes from the name of this createPerson :
