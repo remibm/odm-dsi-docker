@@ -20,11 +20,16 @@ The `dsi-cmd` script can be used to run any usual DSI CLI (`solutionManager`, `p
 ## Container parameter customization using docker-compose
 
 DSI containers can be customized with specific parameters specified in `.env` file when running docker-compose.
+These parameters override corresponding values in DSI templates used.
 
 Customizable variables:
  * `LOGGING_TRACE_SPECIFICATION` sets logging specification in `server.xml` of container. See specific documentation about Liberty logging and trace [here](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html).
 
- * `DSI_USER` and `DSI_PASSWORD` override default DSI credentials.
+ * `DSI_USER` and `DSI_PASSWORD` set default DSI credentials.
+
+ * `DSI_PARTITIONS_COUNT` sets default number of partitions for the map set 
+
+ * `MAX_SYNC_REPLICAS` and `MAX_ASYNC_REPLICAS` set default maximum number of synchronous and asynchronous replicas for each partition in the map set.
 
 ## Persist deployed solutions
 
