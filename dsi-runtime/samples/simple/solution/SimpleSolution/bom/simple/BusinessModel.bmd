@@ -9,7 +9,11 @@ a createPerson has a description.
  
 a sayHello is a business event.
 a sayHello is related to a person . 
- 
+
+a delayed say hello is a business event.
+a delayed say hello is related to a person.
+a delayed say hello has a delay (duration) . 
+
 a message is a business event.
 a message has a description.
 a message is related to a person .

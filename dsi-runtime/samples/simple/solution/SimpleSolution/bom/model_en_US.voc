@@ -1,4 +1,4 @@
-uuid = 62fdd89b-a690-4e7b-b370-7b7e28c53d4b
+uuid = 2db79b0a-cc43-413b-bedb-76b8e0dbdb57
 # simple.CreatePerson
 simple.CreatePerson#concept.label = createPerson
 simple.CreatePerson.CreatePerson(java.lang.String,java.lang.String,java.time.ZonedDateTime)#phrase.navigation = a new {createPerson} where {0, description} {1, name} {2, timestamp} 
@@ -9,11 +9,25 @@ simple.CreatePerson.name#phrase.navigation = {name} of {this}
 simple.CreatePerson.timestamp#phrase.action = set the timestamp of {this} to {timestamp}
 simple.CreatePerson.timestamp#phrase.navigation = {timestamp} of {this}
 
+# simple.DelayedSayHello
+simple.DelayedSayHello#concept.label = delayed say hello
+simple.DelayedSayHello.DelayedSayHello(java.time.Duration,simple.Person,java.time.ZonedDateTime)#phrase.navigation = a new {delayed say hello} where {0, delay} {1, person} {2, timestamp} 
+simple.DelayedSayHello.delay#phrase.action = set the delay of {this} to {delay}
+simple.DelayedSayHello.delay#phrase.navigation = {delay} of {this}
+simple.DelayedSayHello.person#phrase.action = set the person of {this} to {person}
+simple.DelayedSayHello.person#phrase.clearer = clear the person of {this}
+simple.DelayedSayHello.person#phrase.navigation = {person} of {this}
+simple.DelayedSayHello.timestamp#phrase.action = set the timestamp of {this} to {timestamp}
+simple.DelayedSayHello.timestamp#phrase.navigation = {timestamp} of {this}
+
 # simple.Message
 simple.Message#concept.label = message
-simple.Message.Message(java.lang.String,java.time.ZonedDateTime)#phrase.navigation = a new {message} where {0, name} {1, timestamp} 
-simple.Message.name#phrase.action = set the name of {this} to {name}
-simple.Message.name#phrase.navigation = {name} of {this}
+simple.Message.Message(java.lang.String,simple.Person,java.time.ZonedDateTime)#phrase.navigation = a new {message} where {0, description} {1, person} {2, timestamp} 
+simple.Message.description#phrase.action = set the description of {this} to {description}
+simple.Message.description#phrase.navigation = {description} of {this}
+simple.Message.person#phrase.action = set the person of {this} to {person}
+simple.Message.person#phrase.clearer = clear the person of {this}
+simple.Message.person#phrase.navigation = {person} of {this}
 simple.Message.timestamp#phrase.action = set the timestamp of {this} to {timestamp}
 simple.Message.timestamp#phrase.navigation = {timestamp} of {this}
 

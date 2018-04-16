@@ -1,3 +1,4 @@
 'SimpleRules' is an agent related to a person , 
 processing events : 
-	- sayHello , where this person comes from the person of this sayHello 
+	- sayHello , where this person comes from the person of this sayHello
+	- delayed say hello , where this person comes from the person of this delayed say hello 

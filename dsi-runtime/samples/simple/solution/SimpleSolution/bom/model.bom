@@ -1,4 +1,4 @@
-property uuid "827b0d9b-3ce6-4566-a996-cbeff87727d2"
+property uuid "91e079ae-b24d-4e33-9972-7405f62b4578"
 property bdl_generated "true"
 package simple;
 
@@ -26,6 +26,34 @@ public class CreatePerson
     public CreatePerson(java.time.ZonedDateTime timestamp)
                 property "dataio.default" "true";
     public CreatePerson(string description, string name, java.time.ZonedDateTime timestamp)
+                property groups "BALA"
+                property prototype "true";
+}
+
+public class DelayedSayHello
+        implements com.ibm.ia.model.Event
+        property "brl.facets" "ilog.rules.brl.Date:timestamp"
+        property "de.generated" "true"
+        property "xsd.definedNamespaces" ""
+        property "xsd.eventElementName" "DelayedSayHello"
+        property "xsd.fileName" "model.xsd"
+        property "xsd.support" "true"
+        property "xsd.targetNamespace" "http://www.ibm.com/ia/xmlns/default/SimpleSolution/model"
+{
+    public java.time.Duration delay
+                property "xsd.name" "delay"
+                property "xsd.order" "0";
+    public simple.Person person
+                property "xsd.name" "person"
+                property "xsd.order" "1"
+                property "xsd.useMapping" "true";
+    public java.time.ZonedDateTime timestamp
+                property "ia.timestamp" "true"
+                property "xsd.name" "timestamp"
+                property "xsd.order" "2";
+    public DelayedSayHello(java.time.ZonedDateTime timestamp)
+                property "dataio.default" "true";
+    public DelayedSayHello(java.time.Duration delay, simple.Person person, java.time.ZonedDateTime timestamp)
                 property groups "BALA"
                 property prototype "true";
 }
