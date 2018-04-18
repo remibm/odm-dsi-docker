@@ -68,4 +68,6 @@
         stopServerTimeout="120" />
 
     <ia_runtime mementoDatabaseFormat="json"/>
+
+    <include optional="false" location="persistence.xml"/>
 </server>

@@ -16,9 +16,14 @@ services:
                         - DSI_PASSWORD=$DSI_PASSWORD
                         - MAX_SYNC_REPLICAS=$MAX_SYNC_REPLICAS
                         - MAX_ASYNC_REPLICAS=$MAX_ASYNC_REPLICAS
+                        - DSI_DATABASE=$DSI_DATABASE
+                        - DSI_DB_HOSTNAME=$DSI_DB_HOSTNAME
+                        - DSI_DB_USER=$DSI_DB_USER
+                        - DSI_DB_PASSWORD=$DSI_DB_PASSWORD
                 volumes:
                         - volume-templates:/opt/dsi/runtime/wlp/templates/servers
                         - volume-solutions:/opt/dsi/runtime/wlp
+                        - ${DSI_JDBC_DIR}:/jdbc:ro
 
 volumes:
         volume-templates:
