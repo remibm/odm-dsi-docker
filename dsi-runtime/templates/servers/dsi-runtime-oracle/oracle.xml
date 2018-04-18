@@ -1,0 +1,18 @@
+<server description="DSI Runtime">
+
+    <featureManager>
+        <feature>jdbc-4.0</feature>
+    </featureManager>
+
+        <dataSource id="ORACLE" jndiName="jdbc/dsi">
+                <jdbcDriver>
+                        <library>
+                                <fileset dir="." includes="ojdbc8.jar"/>
+                        </library>
+                </jdbcDriver>
+                <properties.oracle URL="jdbc:oracle:thin:@${DSI_DB_HOSTNAME}:1521/orclpdb1"
+                         password="$DSI_DB_PASSWORD" user="$DSI_DB_USER"/>
+        </dataSource>
+
+        <ia_persistence databaseType="ORACLE" datasourceName="jdbc/dsi" maxBatchSize="400" maxCacheAge="1000"/>
+</server>

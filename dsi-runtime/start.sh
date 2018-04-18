@@ -47,8 +47,11 @@ fi
 echo "The DSI template $DSI_TEMPLATE is going to be used."
 
 SRV_XML="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/server.xml"
+SRV_XML_PERSISTENCE_INCLUDE="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/persistence.xml"
 BOOTSTRAP_FILE="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/bootstrap.properties"
 GRID_DEPLOYMENT="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/grids/objectGridDeployment.xml"
+GRID_OBJECT="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/grids/objectgrid.xml"
+GRID_OBJECT_PERSISTENCE="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/objectgrid.xml.PERSISTENCE"
 
 INTERNAL_IP=`hostname -I| sed 's/ //g'`
 
@@ -63,21 +66,21 @@ if [ ! -f "$SRV_XML" ]; then
         echo "Creating DSI server $DSI_TEMPLATE"
         /opt/dsi/runtime/wlp/bin/server create $DSI_TEMPLATE --template=$DSI_TEMPLATE || echo "$DSI_TEMPLATE was already created"
         echo "WLP server $DSI_TEMPLATE has been created"
-
+ 
         echo "" >> /opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/server.env
         echo "JAVA_HOME=$JAVA_HOME" >> /opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/server.env
+        
+        if [ "$DSI_DATABASE" != "" ] ; then
+                echo adding DSI database hostname and credential to "$BOOTSTRAP_FILE"
+                echo "dsi.db.hostname=$DSI_DB_HOSTNAME" >> "$BOOTSTRAP_FILE"
+                echo "dsi.db.password=$DSI_DB_PASSWORD" >> "$BOOTSTRAP_FILE"
+                echo "dsi.db.user=$DSI_DB_USER" >> "$BOOTSTRAP_FILE"
 
-        if [ ! -z "$DSI_DB_HOSTNAME" ]; then
-                echo "Updating DSI_DB_HOSTNAME to $DSI_DB_HOSTNAME in $SRV_XML"
-                sed -i "s/\$DSI_DB_HOSTNAME/$DSI_DB_HOSTNAME/g" "$SRV_XML"
-        fi
-        if [ ! -z "$DSI_DB_USER" ]; then
-                echo "Updating DSI_DB_USER to $DSI_DB_USER in $SRV_XML"
-                sed -i "s/\$DSI_DB_USER/$DSI_DB_USER/g" "$SRV_XML"
-        fi
-        if [ ! -z "$DSI_DB_PASSWORD" ]; then
-                echo "Updating DSI_DB_PASSWORD to $DSI_DB_PASSWORD in $SRV_XML"
-                sed -i "s/\$DSI_DB_PASSWORD/$DSI_DB_PASSWORD/g" "$SRV_XML"
+                echo "Setting database support in grid configuration"
+                cp "$GRID_OBJECT_PERSISTENCE" "$GRID_OBJECT"
+
+                echo Replacing "$SRV_XML_PERSISTENCE_INCLUDE" with "$SRV_XML_PERSISTENCE_INCLUDE"."$DSI_DATABASE"
+                cp "$SRV_XML_PERSISTENCE_INCLUDE"."$DSI_DATABASE" "$SRV_XML_PERSISTENCE_INCLUDE"
         fi
 
         if [ ! -z "$DSI_JPROFILER" ]; then
