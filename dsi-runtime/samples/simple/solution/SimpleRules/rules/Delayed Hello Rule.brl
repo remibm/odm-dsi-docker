@@ -4,8 +4,8 @@
   <uuid>82458056-b8cf-4128-a60c-6a20d6727e74</uuid>
   <locale>en_US</locale>
   <definition><![CDATA[
-when a sayHello has occurred 1 minutes ago 
+when a delayed say hello has occurred , after a delay of the delay of this delayed say hello , 
 then 
-print "Delayed Hello " + the name of the person of this sayHello ; 
+print "Delayed Hello " + the name of the person of this delayed say hello ; 
 ]]></definition>
 </com.ibm.ia.designer.berl:BerlRule>

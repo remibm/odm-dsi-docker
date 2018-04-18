@@ -1,0 +1,8 @@
+{
+                "$class": "simple.DelayedSayHello",
+                "person": {
+                                "key": "john.doe",
+                                "type": "simple.Person"
+                        },
+                "delay": "PT10S"
+}
