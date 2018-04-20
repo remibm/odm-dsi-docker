@@ -79,6 +79,9 @@ if [ ! -f "$SRV_XML" ]; then
         if [ "$DSI_DATABASE" != "" ] ; then
                 echo adding DSI database hostname and credential to "$BOOTSTRAP_FILE"
                 echo "dsi.db.hostname=$DSI_DB_HOSTNAME" >> "$BOOTSTRAP_FILE"
+                echo "dsi.db.port=$DSI_DB_PORT" >> "$BOOTSTRAP_FILE"
+                echo "dsi.db.name=$DSI_DB_NAME" >> "$BOOTSTRAP_FILE"
+                echo "dsi.db.schema=$DSI_DB_SCHEMA" >> "$BOOTSTRAP_FILE"
                 echo "dsi.db.password=$DSI_DB_PASSWORD" >> "$BOOTSTRAP_FILE"
                 echo "dsi.db.user=$DSI_DB_USER" >> "$BOOTSTRAP_FILE"
 
