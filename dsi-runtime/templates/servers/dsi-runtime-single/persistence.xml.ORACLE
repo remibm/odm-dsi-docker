@@ -8,10 +8,10 @@
                 <connectionManager maxPoolSize="120"/>
                 <jdbcDriver>
                         <library>
-                                <fileset dir="/jdbc/" includes="ojdbc8.jar"/>
+                                <fileset dir="/jdbc/" includes="ojdbc*.jar"/>
                         </library>
                 </jdbcDriver>
-                <properties.oracle URL="jdbc:oracle:thin:@${dsi.db.hostname}:1521/orclpdb1"
+                <properties.oracle URL="jdbc:oracle:thin:@${dsi.db.hostname}:${dsi.db.port}/${dsi.db.name}"
                          user="${dsi.db.user}" password="${dsi.db.password}"/>
         </dataSource>
 
