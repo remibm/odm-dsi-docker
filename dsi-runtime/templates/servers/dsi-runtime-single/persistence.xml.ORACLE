@@ -5,6 +5,7 @@
     </featureManager>
 
         <dataSource id="ORACLE" jndiName="jdbc/dsi">
+                <connectionManager maxPoolSize="120"/>
                 <jdbcDriver>
                         <library>
                                 <fileset dir="/jdbc/" includes="ojdbc8.jar"/>
