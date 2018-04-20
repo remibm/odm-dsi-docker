@@ -5,7 +5,7 @@
 The following instructions assume we can access a running Oracle with a `DSI` database, and that we have a DSI runtime Docker image in our local Docker registry.
 
 Copy the Oracle JDBC driver into the directory
-`$DSI_DOCKER_GIT/dsi-runtime/.jdbc/`.
+`$DSI_DOCKER_GIT/dsi-runtime/jdbc/` (or to any other location set in .env with variable `DSI_JDBC_DIR`)
 
 In `$DSI_DOCKER_GIT/dsi-runtime/.env`, 
   * set `DSI_DATABASE` to `ORACLE`
