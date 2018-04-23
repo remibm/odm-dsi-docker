@@ -5,7 +5,7 @@
     </featureManager>
 
         <dataSource id="ORACLE" jndiName="jdbc/dsi">
-                <connectionManager maxPoolSize="120"/>
+                <connectionManager/>
                 <jdbcDriver>
                         <library>
                                 <fileset dir="/jdbc/" includes="ojdbc*.jar"/>
@@ -15,5 +15,5 @@
                          user="${dsi.db.user}" password="${dsi.db.password}"/>
         </dataSource>
 
-        <ia_persistence databaseType="ORACLE" datasourceName="jdbc/dsi" maxBatchSize="400" maxCacheAge="1000"/>
+        <ia_persistence databaseType="ORACLE" datasourceName="jdbc/dsi"/>
 </server>

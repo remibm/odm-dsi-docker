@@ -90,6 +90,26 @@ if [ ! -f "$SRV_XML" ]; then
 
                 echo Replacing "$SRV_XML_PERSISTENCE_INCLUDE" with "$SRV_XML_PERSISTENCE_INCLUDE"."$DSI_DATABASE"
                 cp "$SRV_XML_PERSISTENCE_INCLUDE"."$DSI_DATABASE" "$SRV_XML_PERSISTENCE_INCLUDE"
+                
+                if [ ! -z "$DSI_DB_MAXPOOLSIZE" ]; then
+                        echo Updating maxPoolSize to "$DSI_DB_MAXPOOLSIZE" in "$SRV_XML_PERSISTENCE_INCLUDE"
+                        sed -i "s/connectionManager\(.*\)/connectionManager\1 maxPoolSize=\"$DSI_DB_MAXPOOLSIZE\"/" "$SRV_XML_PERSISTENCE_INCLUDE"
+                fi
+
+                if [ ! -z "$DSI_DB_DELETEBATCHSIZE" ]; then
+                        echo Setting deleteBatchSize to "$DSI_DB_DELETEBATCHSIZE" in "$SRV_XML_PERSISTENCE_INCLUDE"
+                        sed -i "s/ia_persistence\(.*\)\/>/ia_persistence\1 deleteBatchSize=\"$DSI_DB_DELETEBATCHSIZE\"\/>/" "$SRV_XML_PERSISTENCE_INCLUDE"
+                fi
+                
+                if [ ! -z "$DSI_DB_DELETEPAUSEINTERVAL" ]; then
+                        echo Setting deletePauseInterval to "$DSI_DB_DELETEPAUSEINTERVAL" in "$SRV_XML_PERSISTENCE_INCLUDE"
+                        sed -i "s/ia_persistence\(.*\)\/>/ia_persistence\1 deletePauseInterval=\"$DSI_DB_DELETEPAUSEINTERVAL\"\/>/" "$SRV_XML_PERSISTENCE_INCLUDE"
+                fi
+                
+                if [ ! -z "$DSI_DB_MAXBATCHSIZE" ]; then
+                        echo Setting maxBatchSize to "$DSI_DB_MAXBATCHSIZE" in "$SRV_XML_PERSISTENCE_INCLUDE"
+                        sed -i "s/ia_persistence\(.*\)\/>/ia_persistence\1 maxBatchSize=\"$DSI_DB_MAXBATCHSIZE\"\/>/" "$SRV_XML_PERSISTENCE_INCLUDE"
+                fi
         fi
 
         if [ ! -z "$DSI_JPROFILER" ]; then
