@@ -25,6 +25,11 @@ else
         PERSON="$2"
 fi
 
+# This script is meant to be executed from script directory
+SRC_DIR=`dirname $0`
+cd $SRC_DIR
+
+
 cp ./create_person.xml /tmp/$$.tmp
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
