@@ -1,18 +1,25 @@
 # Run a DSI Runtime using persistence
 
-## Oracle support 
+## Oracle and DB2 support 
 
-The following instructions assume we can access a running Oracle with a `DSI` database, and that we have a DSI runtime Docker image in our local Docker registry.
+The following instructions assume we can access a running Oracle or DB2 with DSI tables created, and that we have a DSI runtime Docker image in our local Docker registry.
 
-Copy the Oracle JDBC driver into the directory
+Copy the Oracle or db2 JDBC driver into the directory
 `$DSI_DOCKER_GIT/dsi-runtime/jdbc/` (or to any other location set in .env with variable `DSI_JDBC_DIR`)
 
 In `$DSI_DOCKER_GIT/dsi-runtime/.env`, 
-  * set `DSI_DATABASE` to `ORACLE`
-  * set `DSI_DB_HOSTNAME` to Oracle hostname or ip adress
-  * set `DSI_DB_USER` and `DSI_DB_PASSWORD` to Oracle credentials granting access to access `DSI` database
+  * set `DSI_DATABASE` to `ORACLE` or `DB2`.
+  * set `DSI_DB_HOSTNAME` to hostname or ip adress of your database server.
+  * set `DSI_DB_PORT` to exposed port of your database server.
+  * set `DSI_DB_NAME` to database name.
+  * set `DSI_DB_SCHEMA` to schema used (ignored in case or Oracle database).
+  * set `DSI_DB_USER` and `DSI_DB_PASSWORD` to credentials granting access to DSI database.
 
-Run the DSI Runtime container:
+The templates will typically form URL similar to : `jdbc:oracle:thin:@${dsi.db.hostname}:${dsi.db.port}/${dsi.db.name}`.
+
+Additional optional/advanced database setup is available in `.env`. They are documented in `.env` file and [DSI knowledge center: Configuring Decision Server Insights persistence in JDBC](https://www.ibm.com/support/knowledgecenter/en/SSQP76_8.9.2/com.ibm.odm.itoa.config/topics/tsk_register_loader_callback_prod.html).
+
+Run the DSI Runtime container:$
 
 `docker-compose up -d`
 
@@ -30,4 +37,5 @@ Once preload is completed, the output should show:
 ```
 dsi-runtime_1  | [WARNING ] CWMBE2540W: The outbound queue monitor is currently unable to retrieve the list of active solutions. The grid state is "ONLINE".
 ```
+
 
