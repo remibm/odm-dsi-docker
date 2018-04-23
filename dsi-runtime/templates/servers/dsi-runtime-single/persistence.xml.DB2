@@ -5,7 +5,7 @@
     </featureManager>
 
         <dataSource id="DB2" jndiName="jdbc/dsi">
-            <connectionManager maxPoolSize="120"/>
+            <connectionManager/>
             <jdbcDriver>
                 <library>
                     <fileset dir="/jdbc/" includes="db2*.jar"/>
@@ -21,5 +21,5 @@
                 />
         </dataSource>
 
-        <ia_persistence databaseType="DB2" datasourceName="jdbc/dsi" deleteBatchSize="10000" deletePauseInterval="600000" maxBatchSize="400" maxCacheAge="1000"/>
+        <ia_persistence databaseType="DB2" datasourceName="jdbc/dsi"/>
 </server>

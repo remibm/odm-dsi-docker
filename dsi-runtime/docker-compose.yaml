@@ -23,7 +23,10 @@ services:
                         - DSI_DB_SCHEMA=$DSI_DB_SCHEMA
                         - DSI_DB_USER=$DSI_DB_USER
                         - DSI_DB_PASSWORD=$DSI_DB_PASSWORD
-                       
+                        - DSI_DB_MAXPOOLSIZE=$DSI_DB_MAXPOOLSIZE
+                        - DSI_DB_DELETEBATCHSIZE=$DSI_DB_DELETEBATCHSIZE
+                        - DSI_DB_DELETEPAUSEINTERVAL=$DSI_DB_DELETEPAUSEINTERVAL
+                        - DSI_DB_MAXBATCHSIZE=$DSI_DB_MAXBATCHSIZE                      
                 volumes:
                         - volume-templates:/opt/dsi/runtime/wlp/templates/servers
                         - volume-solutions:/opt/dsi/runtime/wlp
