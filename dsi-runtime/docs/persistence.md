@@ -4,6 +4,8 @@
 
 The following instructions assume we can access a running Oracle or DB2 with DSI tables created, and that we have a DSI runtime Docker image in our local Docker registry.
 
+Ensure you are in directory `dsi-runtime`.
+
 Copy the Oracle or db2 JDBC driver into the directory
 `$DSI_DOCKER_GIT/dsi-runtime/jdbc/` (or to any other location set in .env with variable `DSI_JDBC_DIR`)
 
@@ -17,9 +19,9 @@ In `$DSI_DOCKER_GIT/dsi-runtime/.env`,
 
 The templates will typically form URL similar to : `jdbc:oracle:thin:@${dsi.db.hostname}:${dsi.db.port}/${dsi.db.name}`.
 
-Additional optional/advanced database setup is available in `.env`. They are documented in `.env` file and [DSI knowledge center: Configuring Decision Server Insights persistence in JDBC](https://www.ibm.com/support/knowledgecenter/en/SSQP76_8.9.2/com.ibm.odm.itoa.config/topics/tsk_register_loader_callback_prod.html).
+Optional advanced database setup is available in `.env`. They are documented in `.env` file and [DSI knowledge center: Configuring Decision Server Insights persistence in JDBC](https://www.ibm.com/support/knowledgecenter/en/SSQP76_8.9.2/com.ibm.odm.itoa.config/topics/tsk_register_loader_callback_prod.html).
 
-Run the DSI Runtime container:$
+Run the DSI single runtime container:
 
 `docker-compose up -d`
 
