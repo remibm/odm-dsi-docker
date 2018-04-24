@@ -9,24 +9,8 @@ services:
                         - "${HTTP_PORT}:9080"
                         - "${HTTPS_PORT}:9443"
                 command: ["/root/start.sh", $DSI_TEMPLATE]
-                environment:
-                        - LOGGING_TRACE_SPECIFICATION=$LOGGING_TRACE_SPECIFICATION
-                        - DSI_PARTITIONS_COUNT=$DSI_PARTITIONS_COUNT
-                        - DSI_USER=$DSI_USER
-                        - DSI_PASSWORD=$DSI_PASSWORD
-                        - MAX_SYNC_REPLICAS=$MAX_SYNC_REPLICAS
-                        - MAX_ASYNC_REPLICAS=$MAX_ASYNC_REPLICAS
-                        - DSI_DATABASE=$DSI_DATABASE
-                        - DSI_DB_HOSTNAME=$DSI_DB_HOSTNAME
-                        - DSI_DB_PORT=$DSI_DB_PORT
-                        - DSI_DB_NAME=$DSI_DB_NAME
-                        - DSI_DB_SCHEMA=$DSI_DB_SCHEMA
-                        - DSI_DB_USER=$DSI_DB_USER
-                        - DSI_DB_PASSWORD=$DSI_DB_PASSWORD
-                        - DSI_DB_MAXPOOLSIZE=$DSI_DB_MAXPOOLSIZE
-                        - DSI_DB_DELETEBATCHSIZE=$DSI_DB_DELETEBATCHSIZE
-                        - DSI_DB_DELETEPAUSEINTERVAL=$DSI_DB_DELETEPAUSEINTERVAL
-                        - DSI_DB_MAXBATCHSIZE=$DSI_DB_MAXBATCHSIZE                      
+                env_file:
+                        - .env
                 volumes:
                         - volume-templates:/opt/dsi/runtime/wlp/templates/servers
                         - volume-solutions:/opt/dsi/runtime/wlp
