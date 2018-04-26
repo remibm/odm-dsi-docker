@@ -70,12 +70,12 @@ cp "$SRC_DIR/jprofiler_config.xml" "$BUILD_DIR"
 cp "$SRC_DIR/Dockerfile" "$BUILD_DIR"
 
 if [ -z "$2" ]; then
-        if [[ "$OSTYPE" != "darwin"* ]] && [[ "$OSTYPE" != "cygwin" ]]; then
-                docker-compose -f docker-compose-build.yaml build
-        else
+        if [[ -f "$DSI_HOME/jdk/bin/java.exe" ]] || [[ "$OSTYPE" == "darwin"* ]]; then
                 docker-compose -f docker-compose-build.yaml build dsi-runtime-ibmjava
                 docker-compose -f docker-compose-build.yaml build dsi-runtime-openjdk
+        else
+                docker-compose -f docker-compose-build.yaml build
         fi
 else
         docker-compose build "$2"
-fi
+fi 
