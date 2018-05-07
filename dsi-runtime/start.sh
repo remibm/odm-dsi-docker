@@ -102,6 +102,11 @@ if [ ! -f "$SRV_XML" ]; then
                         echo Setting maxBatchSize to "$DSI_DB_MAXBATCHSIZE" in "$SRV_XML_PERSISTENCE_INCLUDE"
                         sed -i "s/ia_persistence\(.*\)\/>/ia_persistence\1 maxBatchSize=\"$DSI_DB_MAXBATCHSIZE\"\/>/" "$SRV_XML_PERSISTENCE_INCLUDE"
                 fi
+
+                if [ ! -z "$DSI_DB_MAXCACHEAGE" ]; then
+                        echo Setting maxCacheAge to "$DSI_DB_MAXCACHEAGE" in "$SRV_XML_PERSISTENCE_INCLUDE"
+                        sed -i "s/ia_persistence\(.*\)\/>/ia_persistence\1 maxCacheAge=\"$DSI_DB_MAXCACHEAGE\"\/>/" "$SRV_XML_PERSISTENCE_INCLUDE"
+                fi
         fi
 
         if [ ! -z "$DSI_JPROFILER" ]; then
