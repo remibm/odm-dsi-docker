@@ -71,12 +71,20 @@ if [ ! -f "$SRV_XML" ]; then
         echo "JAVA_HOME=$JAVA_HOME" >> /opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/server.env
         
         if [ "$DSI_DATABASE" != "" ] ; then
+                echo adding DSI database hostname and credential to "$BOOTSTRAP_FILE"
+                echo "dsi.db.hostname=$DSI_DB_HOSTNAME" >> "$BOOTSTRAP_FILE"
+                echo "dsi.db.port=$DSI_DB_PORT" >> "$BOOTSTRAP_FILE"
+                echo "dsi.db.name=$DSI_DB_NAME" >> "$BOOTSTRAP_FILE"
+                echo "dsi.db.schema=$DSI_DB_SCHEMA" >> "$BOOTSTRAP_FILE"
+                echo "dsi.db.password=$DSI_DB_PASSWORD" >> "$BOOTSTRAP_FILE"
+                echo "dsi.db.user=$DSI_DB_USER" >> "$BOOTSTRAP_FILE"
+
                 echo "Setting database support in grid configuration"
                 cp "$GRID_OBJECT_PERSISTENCE" "$GRID_OBJECT"
 
                 echo Replacing "$SRV_XML_PERSISTENCE_INCLUDE" with "$SRV_XML_PERSISTENCE_INCLUDE"."$DSI_DATABASE"
                 cp "$SRV_XML_PERSISTENCE_INCLUDE"."$DSI_DATABASE" "$SRV_XML_PERSISTENCE_INCLUDE"
-                
+
                 if [ ! -z "$DSI_DB_MAXPOOLSIZE" ]; then
                         echo Updating maxPoolSize to "$DSI_DB_MAXPOOLSIZE" in "$SRV_XML_PERSISTENCE_INCLUDE"
                         sed -i "s/connectionManager\(.*\)/connectionManager\1 maxPoolSize=\"$DSI_DB_MAXPOOLSIZE\"/" "$SRV_XML_PERSISTENCE_INCLUDE"
