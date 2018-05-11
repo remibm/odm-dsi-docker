@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objectGridConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ibm.com/ws/objectgrid/config ../objectGrid.xsd"
+	xmlns="http://ibm.com/ws/objectgrid/config">
+	<objectGrids>
+		<objectGrid name="com.ibm.ia" initialState="ONLINE" txIsolation="READ_COMMITTED">
+			<!-- This registers the processor to be called when primaries are placed -->
+			<bean id="ObjectGridEventListener" className="com.ibm.ia.wxs.GridServiceManagerCallback" />
+
+			<bean id="TransactionCallback" osgiService="CISSQLTransactionManager" />
+
+			<!-- System Maps -->
+			<backingMap name="DelayTimer.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				ttlEvictorType="LAST_UPDATE_TIME" timeToLive="60" pluginCollectionRef="DelayTimerPlugins" />
+			<backingMap name="JobDelayTimer.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				ttlEvictorType="LAST_UPDATE_TIME" timeToLive="60" pluginCollectionRef="JobDelayTimerPlugins" />
+			<backingMap name="EventQueue.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="EventQueuePlugins" />
+			<backingMap name="DataProviderCache.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="DataProviderCachePlugins" ttlEvictorType="LAST_UPDATE_TIME" />
+			<backingMap name="Solutions.*" template="true" nearCacheEnabled="true" nearCacheInvalidationEnabled="true"
+				lockStrategy="OPTIMISTIC" copyMode="COPY_TO_BYTES" pluginCollectionRef="SolutionsPlugins" />
+			<backingMap name="Entity.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="EntityPlugins" />
+			<!-- This is used for the Store for deployed ruleset -->
+			<backingMap name="Rulesets.*" template="true" nearCacheEnabled="true" nearCacheInvalidationEnabled="true" copyMode="COPY_TO_BYTES" lockStrategy="OPTIMISTIC"
+				pluginCollectionRef="RulesetsPlugins" />
+			<backingMap name="GP.*" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES" template="true"
+				ttlEvictorType="LAST_UPDATE_TIME" />
+			<!-- This is used for asynchronous outbound event delivery -->
+			<backingMap name="OutboundQueue.*" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES" template="true"
+			    pluginCollectionRef="OutboundQueuePlugins" ttlEvictorType="LAST_UPDATE_TIME" />
+			<!-- This is used to store job schedules -->
+			<backingMap name="JobSchedules.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="JobSchedulesPlugins" />
+			<!-- This is used to store job results -->
+			<backingMap name="JobResults.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="JobResultsPlugins" />
+			<!-- This is used to store job history -->
+			<backingMap name="JobHistory.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				ttlEvictorType="LAST_UPDATE_TIME" timeToLive="604800" pluginCollectionRef="JobHistoryPlugins" />
+			<!-- This is used to store active job information -->
+			<backingMap name="ActiveJobs.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="ActiveJobsPlugins" />
+			<backingMap name="AbandonedJobs.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="AbandonedJobsPlugins" />
+			<backingMap name="EventQuery.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="EventQueryPlugins" />
+			<backingMap name="LocalJobQueue.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="LocalJobQueuePlugins" />
+			<backingMap name="LocalPartialResultQueue.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="LocalPartialResultQueuePlugins" />
+			<backingMap name="PartialResultQueue.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="PartialResultQueuePlugins" />
+			<backingMap name="Stats.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="StatsPlugins" />
+			<backingMap name="EventStore.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="EventStorePlugins" ttlEvictorType="LAST_UPDATE_TIME" timeToLive="31536000"/>  	<!-- Default Time to Live is One year -->
+			<backingMap name="Invocations.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="InvocationsMapPlugins"/>
+			<backingMap name="Recordings.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"
+				pluginCollectionRef="RecordingsMapPlugins"/>
+			<backingMap name="JobQueue.*" lockStrategy="PESSIMISTIC" template="true" copyMode="COPY_TO_BYTES"/>
+			<backingMap name="AbortJobQueue.*" lockStrategy="PESSIMISTIC" template="true" copyMode="COPY_TO_BYTES"/>
+			<backingMap name="CommLink.*" lockStrategy="PESSIMISTIC" template="true" copyMode="COPY_TO_BYTES"/>
+		</objectGrid>
+		<objectGrid name="com.ibm.ia.runtime.cluster">
+			<bean id="ObjectGridEventListener"  className="com.ibm.ia.cluster.ClusterGrid" />
+			<bean id="CollisionArbiter" osgiService="ClusterArbiter" />
+			<backingMap name="Config.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"/>
+			<backingMap name="Runtime.*" template="true" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"/>
+			<backingMap name="StaticRuntimeTokensStable" template="false" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"/>
+			<backingMap name="StaticRuntimeTokensVolatile" template="false" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"/>
+			<backingMap name="StaticRuntimeServers" template="false" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"/>
+		</objectGrid>
+		<objectGrid name="com.ibm.ia.preload">
+			<bean id="ObjectGridEventListener" className="com.ibm.ia.persistence.preload.spi.PreloadBatchListener">
+				<property name="preloadThreadCount" value="10" type="int"/>
+			</bean>
+			<backingMap name="PreloadBatches" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"/>
+			<backingMap name="PreloadSummary" lockStrategy="PESSIMISTIC" copyMode="COPY_TO_BYTES"/>
+		</objectGrid>
+	</objectGrids>
+	<backingMapPluginCollections>
+		<backingMapPluginCollection id="DelayTimerPlugins">
+			<!-- *TODO* Uncomment Loader bean if persistence is enabled
+				<bean id="Loader" osgiService="CISSQLManager" />
+			-->
+			<bean id="MapEventListener" osgiService="CISEvictionManager" />
+			<bean id="MapEventListener" osgiService="delayMapListenerBeanFactory" />
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="JobDelayTimerPlugins">
+			<bean id="MapEventListener" osgiService="delayMapListenerBeanFactory" />
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="EventQueuePlugins">
+			<!-- *TODO* Uncomment Loader bean if persistence is enabled
+				<bean id="Loader" osgiService="CISSQLManager" />
+			-->
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="SolutionsPlugins">
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="EntityPlugins">
+			<!-- *TODO* Uncomment Loader bean if persistence is enabled
+				<bean id="Loader" osgiService="CISSQLManager" />
+			-->
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="RulesetsPlugins">
+			<!-- *TODO* Uncomment Loader bean if persistence is enabled
+				<bean id="Loader" osgiService="CISSQLManager" />
+			-->
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="OutboundQueuePlugins">
+			<!-- *TODO* Uncomment Loader bean if persistence is enabled
+				<bean id="Loader" osgiService="CISSQLManager" />
+			-->
+			<bean id="MapEventListener" osgiService="CISEvictionManager" />
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="JobSchedulesPlugins">
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="JobResultsPlugins">
+			<!-- *TODO* Uncomment Loader bean if persistence is enabled
+				<bean id="Loader" osgiService="CISSQLManager" />
+			-->
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="JobHistoryPlugins">
+			<!-- *TODO* Uncomment Loader bean if persistence is enabled
+				<bean id="Loader" osgiService="CISSQLManager" />
+			-->
+			<bean id="MapEventListener" osgiService="CISEvictionManager" />
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="ActiveJobsPlugins">
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="AbandonedJobsPlugins">
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="EventQueryPlugins">
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="LocalJobQueuePlugins">
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="LocalPartialResultQueuePlugins">
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="PartialResultQueuePlugins">
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="StatsPlugins">
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="EventStorePlugins">
+			<!-- *TODO* Uncomment Loader bean if persistence is enabled
+				<bean id="Loader" osgiService="CISSQLManager" />
+				<bean id="MapEventListener" osgiService="CISEvictionManager" />
+			-->
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="DataProviderCachePlugins">
+			<bean id="Loader" osgiService="CISDataProviderManager" />
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="InvocationsMapPlugins">
+			<bean id="MapIndexPlugin" className="com.ibm.ia.common.impl.InvocationTimeIndex">
+			</bean>
+		</backingMapPluginCollection>
+		<backingMapPluginCollection id="RecordingsMapPlugins">
+			<bean id="MapIndexPlugin" className="com.ibm.ia.common.impl.RecordingsSolutionIndex">
+			</bean>
+		</backingMapPluginCollection>
+	</backingMapPluginCollections>
+</objectGridConfig>
