@@ -12,7 +12,7 @@ cd $DSI_DOCKER_GIT/dsi-runtime
 Run the DSI Runtime container:
 
 ```bash
-docker run -p9443:9443 -e DSI_DB_HOSTNAME=$DSI_DB_HOSTNAME -e DSI_DB_USER=$DSI_DB_USER -e DSI_DB_PASSWORD=$DSI_DB_PASSWORD--name my-dsi-runtime dsi-runtime /root/start.sh dsi-runtime-oracle
+docker run -p9443:9443 -e DSI_DB_HOSTNAME=$DSI_DB_HOSTNAME -e DSI_DB_USER=$DSI_DB_USER -e DSI_DB_PASSWORD=$DSI_DB_PASSWORD --name my-dsi-runtime dsi-runtime /root/start.sh dsi-runtime-oracle
 ```
 
 With the following environment variables:
