@@ -9,13 +9,8 @@ services:
                         - "${HTTP_PORT}:9080"
                         - "${HTTPS_PORT}:9443"
                 command: ["/root/start.sh", $DSI_TEMPLATE]
-                environment:
-                        - LOGGING_TRACE_SPECIFICATION=$LOGGING_TRACE_SPECIFICATION
-                        - DSI_PARTITIONS_COUNT=$DSI_PARTITIONS_COUNT
-                        - DSI_USER=$DSI_USER
-                        - DSI_PASSWORD=$DSI_PASSWORD
-                        - MAX_SYNC_REPLICAS=$MAX_SYNC_REPLICAS
-                        - MAX_ASYNC_REPLICAS=$MAX_ASYNC_REPLICAS
+                env_file:
+                        - .env
                 volumes:
                         - volume-templates:/opt/dsi/runtime/wlp/templates/servers
                         - volume-solutions:/opt/dsi/runtime/wlp
