@@ -10,11 +10,11 @@ Copy the Oracle or db2 JDBC driver into the directory
 `$DSI_DOCKER_GIT/dsi-runtime/jdbc/` (or to any other location set in .env with variable `DSI_JDBC_DIR`)
 
 In `$DSI_DOCKER_GIT/dsi-runtime/.env`, 
-  * set `DSI_DATABASE` to `ORACLE` or `DB2`.
+  * set `DSI_DATABASE` to `ORACLE` or `DB2`. This will enable persistence. 
   * set `DSI_DB_HOSTNAME` to hostname or ip adress of your database server.
   * set `DSI_DB_PORT` to exposed port of your database server.
   * set `DSI_DB_NAME` to database name.
-  * set `DSI_DB_SCHEMA` to schema used (ignored in case or Oracle database).
+  * set `DSI_DB2_SCHEMA` to schema used (ignored in case or Oracle database).
   * set `DSI_DB_USER` and `DSI_DB_PASSWORD` to credentials granting access to DSI database.
 
 The templates will typically form URL similar to : `jdbc:oracle:thin:@${dsi.db.hostname}:${dsi.db.port}/${dsi.db.name}`.
