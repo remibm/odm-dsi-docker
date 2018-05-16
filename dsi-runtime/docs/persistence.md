@@ -14,7 +14,7 @@ In `$DSI_DOCKER_GIT/dsi-runtime/.env`,
   * set `DSI_DB_HOSTNAME` to hostname or ip adress of your database server.
   * set `DSI_DB_PORT` to exposed port of your database server.
   * set `DSI_DB_NAME` to database name.
-  * set `DSI_DB_SCHEMA` to schema used (ignored in case or Oracle database).
+  * set `DSI_DB_SCHEMA` to schema used (ignored in case of Oracle database).
   * set `DSI_DB_USER` and `DSI_DB_PASSWORD` to credentials granting access to DSI database.
 
 The templates will typically form URL similar to : `jdbc:oracle:thin:@${dsi.db.hostname}:${dsi.db.port}/${dsi.db.name}`.
