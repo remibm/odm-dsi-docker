@@ -81,7 +81,7 @@ if [ ! -f "$SRV_XML" ]; then
                 cp "$GRID_OBJECT_PERSISTENCE" "$GRID_OBJECT"
 
                 echo Replacing "$SRV_XML_PERSISTENCE_INCLUDE" with "$SRV_XML_PERSISTENCE_INCLUDE"."$DSI_DB_TYPE"
-                cp "$SRV_XML_PERSISTENCE_INCLUDE"."$DSI_DATABASE" "$SRV_XML_PERSISTENCE_INCLUDE"
+                cp "$SRV_XML_PERSISTENCE_INCLUDE"."$DSI_DB_TYPE" "$SRV_XML_PERSISTENCE_INCLUDE"
         fi
 
         if [ ! -z "$DSI_JPROFILER" ]; then
