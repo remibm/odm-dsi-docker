@@ -80,7 +80,7 @@ if [ ! -f "$SRV_XML" ]; then
                 echo "Setting database support in grid configuration"
                 cp "$GRID_OBJECT_PERSISTENCE" "$GRID_OBJECT"
 
-                echo Replacing "$SRV_XML_PERSISTENCE_INCLUDE" with "$SRV_XML_PERSISTENCE_INCLUDE"."$DSI_DATABASE"
+                echo Replacing "$SRV_XML_PERSISTENCE_INCLUDE" with "$SRV_XML_PERSISTENCE_INCLUDE"."$DSI_DB_TYPE"
                 cp "$SRV_XML_PERSISTENCE_INCLUDE"."$DSI_DATABASE" "$SRV_XML_PERSISTENCE_INCLUDE"
         fi
 
