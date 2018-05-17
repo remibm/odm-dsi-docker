@@ -111,7 +111,7 @@ if [ "$DSI_DATABASE" != "" ]; then
         sed -i "s/dsi.db.hostname=.*$/dsi.db.hostname=$DSI_DB_HOSTNAME/" "$BOOTSTRAP_FILE"
         sed -i "s/dsi.db.port=.*$/dsi.db.port=$DSI_DB_PORT/" "$BOOTSTRAP_FILE"
         sed -i "s/dsi.db.name=.*$/dsi.db.name=$DSI_DB_NAME/" "$BOOTSTRAP_FILE"
-        sed -i "s/dsi.db.schema=.*$/dsi.db.schema=$DSI_DB_SCHEMA/" "$BOOTSTRAP_FILE"
+        sed -i "s/dsi.db.schema=.*$/dsi.db.schema=$DSI_DB2_SCHEMA/" "$BOOTSTRAP_FILE"
         sed -i "s/dsi.db.user=.*$/dsi.db.user=$DSI_DB_USER/" "$BOOTSTRAP_FILE"
         sed -i "s/dsi.db.password=.*$/dsi.db.password=$DSI_DB_PASSWORD/" "$BOOTSTRAP_FILE"
 
