@@ -76,7 +76,7 @@ if [ ! -f "$SRV_XML" ]; then
         echo "" >> /opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/server.env
         echo "JAVA_HOME=$JAVA_HOME" >> /opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/server.env
         
-        if [ "$DSI_DATABASE" != "" ] ; then
+        if [ "$DSI_DB_TYPE" != "" ] ; then
                 echo "Setting database support in grid configuration"
                 cp "$GRID_OBJECT_PERSISTENCE" "$GRID_OBJECT"
 
@@ -106,7 +106,7 @@ else
         echo "$SRV_XML already exist"
 fi
 
-if [ "$DSI_DATABASE" != "" ]; then
+if [ "$DSI_DB_TYPE" != "" ]; then
         echo "Updating DSI Database data and credentials in $BOOTSTRAP_FILE"
         sed -i "s/dsi.db.hostname=.*$/dsi.db.hostname=$DSI_DB_HOSTNAME/" "$BOOTSTRAP_FILE"
         sed -i "s/dsi.db.port=.*$/dsi.db.port=$DSI_DB_PORT/" "$BOOTSTRAP_FILE"

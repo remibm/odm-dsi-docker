@@ -10,7 +10,7 @@ Copy the Oracle or db2 JDBC driver into the directory
 `$DSI_DOCKER_GIT/dsi-runtime/jdbc/` (or to any other location set in .env with variable `DSI_JDBC_DIR`)
 
 In `$DSI_DOCKER_GIT/dsi-runtime/.env`, 
-  * set `DSI_DATABASE` to `ORACLE` or `DB2`. This will enable persistence. 
+  * set `DSI_DB_TYPE` to `ORACLE` or `DB2`. This will enable persistence.
   * set `DSI_DB_HOSTNAME` to hostname or ip adress of your database server.
   * set `DSI_DB_PORT` to exposed port of your database server.
   * set `DSI_DB_NAME` to database name.
