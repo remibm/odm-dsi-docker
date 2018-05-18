@@ -32,7 +32,7 @@ dsi-runtime_1  | [WARNING ] CWMBE2540W: The outbound queue monitor is currently 
 
 Load the persisted data with the usual DSI dataloadManager script and start the DSI Runtime.
 
-`docker-compose exec dsi-runtime ./dsi-cmd dataLoadManager autoload --disableServerCertificateVerification=true --disableSSLHostnameVerification=true`
+`docker-compose run dsi-runtime ./dsi-cmd dataLoadManager autoload --disableServerCertificateVerification=true --disableSSLHostnameVerification=true`
 
 Once preload is completed, the output should show:
 
