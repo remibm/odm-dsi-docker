@@ -12,7 +12,7 @@ set -e
 function docker_stop() { 
   echo "Container is being stopped."
   echo "Stopping server $DSI_TEMPLATE." 
-  /opt/dsi/runtime/wlp/bin/server stop "$DSI_TEMPLATE"
+  /dsi-cmd serverManager shutDown --disableSSLHostnameVerification=true --disableServerCertificateVerification=true 
 }
 
 function jprofile_enable {
