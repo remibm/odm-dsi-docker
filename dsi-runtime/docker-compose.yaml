@@ -9,7 +9,7 @@ services:
                         - "${HTTP_PORT}:9080"
                         - "${HTTPS_PORT}:9443"
                 command: ["/root/start.sh", $DSI_TEMPLATE]
-                stop_grace_period: 30s
+                stop_grace_period: 1m
                 env_file:
                         - .env
                 volumes:
