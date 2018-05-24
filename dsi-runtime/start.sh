@@ -9,6 +9,12 @@
 
 set -e
 
+function docker_stop() { 
+  echo "Container is being stopped."
+  echo "Stopping server $DSI_TEMPLATE." 
+  /opt/dsi/runtime/wlp/bin/server stop "$DSI_TEMPLATE"
+}
+
 function jprofile_enable {
         echo "JProfiler enable"
 
@@ -154,4 +160,6 @@ if [ "$DSI_PASSWORD" !=  "" ] ; then
         sed -i "s/ia.test.password=.*$/ia.test.password=$DSI_PASSWORD/" "$BOOTSTRAP_FILE"
 fi
 
-/opt/dsi/runtime/wlp/bin/server run "$DSI_TEMPLATE"
+trap docker_stop 0
+/opt/dsi/runtime/wlp/bin/server run "$DSI_TEMPLATE" &
+wait ${!}
