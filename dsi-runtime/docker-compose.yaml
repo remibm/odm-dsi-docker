@@ -15,6 +15,7 @@ services:
                 volumes:
                         - volume-templates:/opt/dsi/runtime/wlp/templates/servers
                         - volume-solutions:/opt/dsi/runtime/wlp
+                        - ${DSI_JDBC_DIR}:/jdbc:ro
 
 volumes:
         volume-templates:
