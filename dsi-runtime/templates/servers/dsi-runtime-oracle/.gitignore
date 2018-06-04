@@ -1,1 +1,0 @@
-ojdbc8.jar
