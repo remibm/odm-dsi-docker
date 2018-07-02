@@ -53,7 +53,7 @@ fi
 echo "The DSI template $DSI_TEMPLATE is going to be used."
 
 SRV_XML="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/server.xml"
-SRV_XML_PERSISTENCE_INCLUDE="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/persistence.xml"
+SRV_XML_PERSISTENCE_INCLUDE="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/persistence.${DSI_DB_TYPE}.xml"
 BOOTSTRAP_FILE="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/bootstrap.properties"
 GRID_DEPLOYMENT="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/grids/objectGridDeployment.xml"
 GRID_OBJECT="/opt/dsi/runtime/wlp/usr/servers/$DSI_TEMPLATE/grids/objectgrid.xml"
@@ -79,9 +79,6 @@ if [ ! -f "$SRV_XML" ]; then
         if [ "$DSI_DB_TYPE" != "" ] ; then
                 echo "Setting database support in grid configuration"
                 cp "$GRID_OBJECT_PERSISTENCE" "$GRID_OBJECT"
-
-                echo Replacing "$SRV_XML_PERSISTENCE_INCLUDE" with "$SRV_XML_PERSISTENCE_INCLUDE"."$DSI_DB_TYPE"
-                cp "$SRV_XML_PERSISTENCE_INCLUDE"."$DSI_DB_TYPE" "$SRV_XML_PERSISTENCE_INCLUDE"
         fi
 
         if [ ! -z "$DSI_JPROFILER" ]; then
@@ -108,6 +105,7 @@ fi
 
 if [ "$DSI_DB_TYPE" != "" ]; then
         echo "Updating DSI Database data and credentials in $BOOTSTRAP_FILE"
+        sed -i "s/dsi.db.type=*$/dsi.db.type=$DSI_DB_TYPE/" "$BOOTSTRAP_FILE"
         sed -i "s/dsi.db.hostname=.*$/dsi.db.hostname=$DSI_DB_HOSTNAME/" "$BOOTSTRAP_FILE"
         sed -i "s/dsi.db.port=.*$/dsi.db.port=$DSI_DB_PORT/" "$BOOTSTRAP_FILE"
         sed -i "s/dsi.db.name=.*$/dsi.db.name=$DSI_DB_NAME/" "$BOOTSTRAP_FILE"
