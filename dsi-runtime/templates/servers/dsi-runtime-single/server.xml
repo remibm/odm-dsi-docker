@@ -69,5 +69,5 @@
 
     <ia_runtime mementoDatabaseFormat="json"/>
 
-    <include optional="false" location="persistence.xml"/>
+    <include optional="true" location="persistence.${dsi.db.type}.xml"/>
 </server>
