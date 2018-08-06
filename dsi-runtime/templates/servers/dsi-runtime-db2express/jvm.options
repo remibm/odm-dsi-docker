@@ -1,0 +1,12 @@
+-Djava.endorsed.dirs=../../../wxs/lib/endorsed
+-Dorg.osgi.framework.bootdelegation=com.ibm.wsspi.runtime
+-Djava.library.path=.
+-Dorg.apache.xml.dtm.DTMManager=org.apache.xml.dtm.ref.DTMManagerDefault
+-DX10_OSGI=LATESTVERSION
+-Dcom.ibm.xs.xio.transport.disableSSL=true
+# Please see the platform specific reference section of
+# http://www-01.ibm.com/support/knowledgecenter/SSYKE2_8.0.0/welcome/welcome_javasdk_version.html
+# for more details about the -Xgcpolicy and -Xmx settings.
+-Xmx2g
+# Bypass blueprint EBA transaction interceptor
+-Dcom.ibm.ws.eba.blueprint.transform.impl.RestrictAddingBundle=true
