@@ -1,0 +1,17 @@
+<server description="DSI Runtime">
+
+    <featureManager>
+        <feature>jdbc-4.0</feature>
+    </featureManager>
+
+        <dataSource id="postgresql" jndiName="jdbc/dsi" transactional="true" type="javax.sql.XADataSource">
+                <connectionManager/>
+                <jdbcDriver javax.sql.XADataSource="org.postgresql.xa.PGXADataSource" libraryRef="postgreslib"/>
+                <properties serverName="${dsi.db.hostname}" portNumber="${dsi.db.port}" databaseName="${dsi.db.name}" user="${dsi.db.user}" password="${dsi.db.password}"/>
+        </dataSource>
+        
+        <library id="postgreslib">
+            <fileset dir="/jdbc/" includes="postgresql*.jar"/>
+        </library>
+        <ia_persistence databaseType="POSTGRES" datasourceName="jdbc/dsi"/>
+</server>
