@@ -56,27 +56,20 @@ At this stage everything is running, DSI, and the Kafka/Zookeeper servers, and a
 simple DSI solution is deployed for testing the communication between Kafka and
 DSI.
 
-### Test the sample
+## Test the sample
 
-To test the sample, you have scripts to create a 'Person' Entity and send an event to this entity.
+The event [CreatePerson](kafka/src/main/resources/create_person.json) is creating an entity.
+You can send it to DSI through the inbound Kafka topic by running the script [create_person_entity.sh](create_person_entity.sh).
 
-By sending an event to this entity, an output event will be emitted.
+The DSI webapi can used to verify that the entity has been created, open the following URL with
+a Web browser: https://localhost:9443/ibm/ia/rest/solutions/simple_solution/entity-types/simple.Person/entities
+It should output:
 
-The test scenario is :
-
-1. Go to 'Kafka' project:
-
-	cd $DSI_DOCKER_GIT/samples/kafka/
-
-2. On a first terminal, create the 'Person' Entity by executing the script 'create_person.sh':
-
-	./create_person_entity.sh
-
-3. On a second terminal, execute the kafka_consume.sh script to to receive later the output event,
+1. On a second terminal, execute the kafka_consume.sh script to to receive later the output event,
 
 	./start_consumer.sh
 
-4. Again, on the first terminal, execute the 'say_hello.sh' script.
+2. Again, on the first terminal, execute the 'say_hello.sh' script.
 
 	./send_hello_event.sh
 
