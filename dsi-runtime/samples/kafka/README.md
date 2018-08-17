@@ -62,7 +62,8 @@ The event [CreatePerson](src/main/resources/create_person.json) is creating an e
 You can send it to DSI through the inbound Kafka topic by running the script [create_person_entity.sh](create_person_entity.sh).
 
 The DSI webapi can used to verify that the entity has been created, open the following URL with
-a Web browser: https://localhost:9443/ibm/ia/rest/solutions/simple_solution/entity-types/simple.Person/entities
+a Web browser: https://localhost:9443/ibm/ia/rest/solutions/simple_solution/entity-types/simple.Person/entities.
+
 It should output:
 ```json
 <object xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ibm.com/ia/Entity" type="Collection[simple.Person]">
@@ -89,14 +90,12 @@ It should output:
 </object>
 ```
 
-1. On a second terminal, execute the kafka_consume.sh script to to receive later the output event,
+Then, the event [SayHello](src/main/resources/say_hello.json) can be send.
+When received, the related Rule agent of the DSI solution will emit a new event `Message`.
+You can send it to DSI through the inbound Kafka topic by running the script [send_hello_event.sh](send_hello_event.sh).
 
-	./start_consumer.sh
-
-2. Again, on the first terminal, execute the 'say_hello.sh' script.
-
-	./send_hello_event.sh
-
-The event will be sent to the 'Person' entity and an output event will be emitted.
-
-On the second terminal, you must see this output event printed.
+The script `start_consumer.sh` can be used to monitor the Kafka outbound topic.
+When a message is posted, the script will display the following output:
+```
+Output event from DSI: {  "$class": "simple.Message",  "$Id": "B40C5B1327B760A23011E87D17E55269",  "$TimeAttrib": "timestamp",  "$Timestamp": {    "$class": "java.time.ZonedDateTime",    "$value": "2018-08-17T15:13:19.801Z[GMT]"  },  "description": "hello",  "person": {    "key": "john.doe",    "type": "simple.Person"  },  "timestamp": "2018-08-17T15:13:19Z[GMT]"}
+```
