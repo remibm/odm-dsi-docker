@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+
+	<application location="simple_solution-inbound.ear">
+		<application-bnd>
+			<security-role name="iaEventSubmitter" />
+		</application-bnd>
+	</application>
+
+	<ia_inboundHttpEndpoint
+		endpoint="simple_solution/endin" />
+
+	<ia_outboundHttpEndpoint
+		endpoint="simple_solution/HTTPTransactionOutputEndPoint"
+		url="OUTPUT_CONNECTIVITY_URL" />
+
+	<ia_outboundHttpEndpoint
+		endpoint="simple_solution/endout" url="OUTPUT_CONNECTIVITY_URL" />
+
+</server>
