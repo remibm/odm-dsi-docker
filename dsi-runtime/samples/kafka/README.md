@@ -7,6 +7,8 @@ services and applications.
 This sample demonstrates a simple way to handle the communication between
 Apache Kafka and DSI Runtime and uses Docker to simplify the deployment.
 
+![Design](./design_single.png)
+
 ## Prerequisites
 
 The following softwares are required for running this sample:
@@ -31,7 +33,7 @@ Checkout the source of the sample:
 git clone https://github.com/ODMDev/odm-dsi-docker
 ```
 
-Go to sample directory:
+Go to the sample directory:
 ```
 cd dsi-runtime/samples/kafka/
 ```
