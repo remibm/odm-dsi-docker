@@ -58,7 +58,7 @@ DSI.
 
 ## Test the sample
 
-The event [CreatePerson](kafka/src/main/resources/create_person.json) is creating an entity.
+The event [CreatePerson](src/main/resources/create_person.json) is creating an entity.
 You can send it to DSI through the inbound Kafka topic by running the script [create_person_entity.sh](create_person_entity.sh).
 
 The DSI webapi can used to verify that the entity has been created, open the following URL with
