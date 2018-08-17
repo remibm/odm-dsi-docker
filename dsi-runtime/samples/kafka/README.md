@@ -64,6 +64,30 @@ You can send it to DSI through the inbound Kafka topic by running the script [cr
 The DSI webapi can used to verify that the entity has been created, open the following URL with
 a Web browser: https://localhost:9443/ibm/ia/rest/solutions/simple_solution/entity-types/simple.Person/entities
 It should output:
+```json
+<object xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ibm.com/ia/Entity" type="Collection[simple.Person]">
+  <attribute name="entities">
+    <collection>
+      <object type="simple.Person">
+        <attribute name="$CreationTime">
+          <null/>
+        </attribute>
+        <attribute name="$IdAttrib">
+          <string>name</string>
+        </attribute>
+        <attribute name="description">
+          <string></string>
+        </attribute>
+        <attribute name="name">
+          <string>john.doe</string>
+        </attribute>
+
+      </object>
+    </collection>
+  </attribute>
+
+</object>
+```
 
 1. On a second terminal, execute the kafka_consume.sh script to to receive later the output event,
 
