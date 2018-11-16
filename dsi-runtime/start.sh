@@ -116,7 +116,7 @@ if [ "$DSI_DB_TYPE" != "" ]; then
         sed -i "s/connectionManager\(.*\)\(maxPoolSize=[^ \/]*\)/connectionManager\1/g"  "$SRV_XML_PERSISTENCE_INCLUDE"
         if [ ! -z "$DSI_DB_MAXPOOLSIZE" ]; then
                 echo Updating maxPoolSize to "$DSI_DB_MAXPOOLSIZE" in "$SRV_XML_PERSISTENCE_INCLUDE"
-                sed -i "s/connectionManager\(.*\)/connectionManager\1 maxPoolSize=\"$DSI_DB_MAXPOOLSIZE\"/" "$SRV_XML_PERSISTENCE_INCLUDE"
+                sed -i "s/connectionManager\(.*\)\/>/connectionManager\1 maxPoolSize=\"$DSI_DB_MAXPOOLSIZE\"\/>/" "$SRV_XML_PERSISTENCE_INCLUDE"
         fi
         
         sed -i "s/ia_persistence\(.*\)\(deleteBatchSize=[^ \/]*\)/ia_persistence\1/g"  "$SRV_XML_PERSISTENCE_INCLUDE"
