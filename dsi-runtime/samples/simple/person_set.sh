@@ -18,6 +18,6 @@ else
     sed -i "s/DESCRIPTION/$DESCRIPTION/" $TMP_FILE
 fi
 
-curl -k -H "Content-Type: application/xml" -d @$TMP_FILE -X PUT $URL
+curl -s --user tester:tester -k -H "Content-Type: application/xml" -d @$TMP_FILE -X PUT $URL
 
 rm $TMP_FILE

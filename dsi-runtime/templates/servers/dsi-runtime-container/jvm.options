@@ -1,6 +1,5 @@
 
--Djava.endorsed.dirs=../../../wxs/lib/endorsed
--Dorg.osgi.framework.bootdelegation=com.ibm.wsspi.runtime
+-Dorg.osgi.framework.bootdelegation=com.ibm.wsspi.runtime,org.xml.sax.helpers
 -Djava.library.path=.
 -Dorg.apache.xml.dtm.DTMManager=org.apache.xml.dtm.ref.DTMManagerDefault
 -DX10_OSGI=LATESTVERSION

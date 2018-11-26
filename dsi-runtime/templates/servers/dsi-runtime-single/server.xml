@@ -1,8 +1,9 @@
 <server description="DSI Runtime">
 
     <featureManager>
-        <feature>restConnector-1.0</feature>
+        <feature>restConnector-2.0</feature>
         <feature>ssl-1.0</feature>
+        <feature>elasticCacheCatalog-1.0</feature>
         <feature>ia:iaRuntime-_DSI_VERSION_</feature>
         <feature>ia:iaDispatcher-_DSI_VERSION_</feature>
         <feature>ia:iaAnalytics-_DSI_VERSION_</feature>
@@ -20,13 +21,19 @@
         id="defaultHttpEndpoint"
         host="*"
         httpPort="${http.port}"
-        httpsPort="${https.port}" />
+        httpsPort="${https.port}"/>
 
-    <xsServer
-        catalogServer="true"
-        listenerPort="${ia.listenerPort}"
-        transport="XIO"
-        serverName="${ia.serverName}" />
+    <elasticCacheCatalog
+        enableMBean="true" />
+
+    <xioEndpoint />
+
+    <elasticCache
+        name="${ia.host}-${wlp.server.name}"
+        enableMBean="true" />
+
+    <gridApplication
+        location="${server.config.dir}/grids" />
 
     <remoteFileAccess>
         <!-- solutionManager and connectivityManager remote deployment
@@ -44,9 +51,13 @@
 
     <httpSession securityIntegrationEnabled="false"/>
 
-    <quickStartSecurity
-        userName="${ia.test.user}"
-        userPassword="${ia.test.password}" />
+    <basicRegistry id="basic" realm="realm">
+        <user name="${ia.test.user}" password="${ia.test.password}"/>
+    </basicRegistry>
+
+    <administrator-role>
+        <user>${ia.test.user}</user>
+    </administrator-role>
 
     <authorization-roles id="iaAuthorization">
         <security-role name="iaRESTWriter">

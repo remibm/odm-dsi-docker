@@ -1,8 +1,8 @@
 # Run a DSI Runtime using persistence
 
-## Oracle and DB2 support 
+The instructions on this page assume we have a DSI runtime Docker image in our local Docker registry.
 
-The following instructions assume we can access a running Oracle or DB2 with DSI tables created, and that we have a DSI runtime Docker image in our local Docker registry.
+## Oracle and DB2 support 
 
 Ensure you are in directory `dsi-runtime`.
 
@@ -10,7 +10,8 @@ Copy the Oracle or db2 JDBC driver into the directory
 `$DSI_DOCKER_GIT/dsi-runtime/jdbc/` (or to any other location set in .env with variable `DSI_JDBC_DIR`)
 
 In `$DSI_DOCKER_GIT/dsi-runtime/.env`, 
-  * set `DSI_DB_TYPE` to `ORACLE` or `DB2`. This will enable persistence.
+  * set `DSI_DB_TYPE` to `ORACLE`, `DB2`. This will enable persistence.
+  * set `DSI_DB_DATABASEINITSCRIPT` to sql script path. This parameter is optional. When set, DSI will create required tables using provided script if needed. 
   * set `DSI_DB_HOSTNAME` to hostname or ip adress of your database server.
   * set `DSI_DB_PORT` to exposed port of your database server.
   * set `DSI_DB_NAME` to database name.
@@ -19,7 +20,9 @@ In `$DSI_DOCKER_GIT/dsi-runtime/.env`,
 
 The templates will typically form URL similar to : `jdbc:oracle:thin:@${dsi.db.hostname}:${dsi.db.port}/${dsi.db.name}`.
 
-Optional advanced database setup is available in `.env`. They are documented in `.env` file and [DSI knowledge center: Configuring Decision Server Insights persistence in JDBC](https://www.ibm.com/support/knowledgecenter/en/SSQP76_8.9.2/com.ibm.odm.itoa.config/topics/tsk_register_loader_callback_prod.html).
+Optionally, set `DSI_DB_AUTOLOAD` to "1" in order to enable automatic autoload at startup.
+
+Further optional advanced database setup is available in `.env`. They are documented in `.env` file and [DSI knowledge center: Configuring Decision Server Insights persistence in JDBC](https://www.ibm.com/support/knowledgecenter/en/SSQP76_8.9.2/com.ibm.odm.itoa.config/topics/tsk_register_loader_callback_prod.html).
 
 Run the DSI single runtime container:
 
@@ -39,5 +42,3 @@ Once preload is completed, the output should show:
 ```
 dsi-runtime_1  | [WARNING ] CWMBE2540W: The outbound queue monitor is currently unable to retrieve the list of active solutions. The grid state is "ONLINE".
 ```
-
-
