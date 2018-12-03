@@ -3,6 +3,7 @@
     <featureManager>
         <feature>restConnector-2.0</feature>
         <feature>ssl-1.0</feature>
+        <feature>jndi-1.0</feature>
         <feature>elasticCacheCatalog-1.0</feature>
         <feature>ia:iaRuntime-_DSI_VERSION_</feature>
         <feature>ia:iaDispatcher-_DSI_VERSION_</feature>
@@ -80,5 +81,6 @@
 
     <ia_runtime mementoDatabaseFormat="json"/>
 
+    <include optional="true" location="${env.EXTENSION_TEMPLATE_PATH}"/>
     <include optional="true" location="persistence.${dsi.db.type}.xml"/>
 </server>

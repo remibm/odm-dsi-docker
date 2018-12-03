@@ -1,0 +1,50 @@
+version: '2'
+services:
+        zookeeper:
+            image: wurstmeister/zookeeper
+            hostname: zookeeper
+            ports:
+              - "2181:2181"
+            extra_hosts:
+              - "moby:127.0.0.1"
+        kafka:
+            image: wurstmeister/kafka
+            hostname: ${KAFKA_HOSTNAME}
+            container_name: kafka
+            depends_on:
+              - zookeeper
+            ports:
+              - "${KAFKA_PORT}:${KAFKA_PORT}"
+            environment:
+              KAFKA_BROKER_ID: 1
+              KAFKA_CREATE_TOPICS: "${KAFKA_TOPIC_IN}:1:1,${KAFKA_TOPIC_OUT}:1:1"
+              KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+              KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_HOSTNAME}
+              KAFKA_ADVERTISED_PORT: ${KAFKA_PORT}
+              KAFKA_ADVERTISED_LISTENERS: INSIDE://:${KAFKA_PORT}
+              KAFKA_LISTENERS: INSIDE://:${KAFKA_PORT}
+              KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+              KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+            extra_hosts:
+              - "moby:127.0.0.1"
+            volumes:
+              - /var/run/docker.sock:/var/run/docker.sock
+        dsi-runtime:
+                image: ${DSI_IMAGE}
+                command: ["/root/start.sh", $DSI_TEMPLATE]
+                ports:
+                  - "9443:9443"
+                  - "9080:9080"
+                env_file:
+                  - .env
+                environment:
+                        KafkaHostname: ${KAFKA_HOSTNAME}
+                        KafkaPort: ${KAFKA_PORT}
+                        KafkaTopicIn: ${KAFKA_TOPIC_IN}
+                        KafkaTopicOut: ${KAFKA_TOPIC_OUT}
+                        InputConnectivityUrl: https://${DSI_HOSTNAME}:${DSI_HTTPS_PORT}${INPUT_CONNECTIVITY_PATH}
+                        dsiUser: ${DSI_USER}
+                        dsiPassword: ${DSI_PASSWORD}
+                        EXTENSION_TEMPLATE_PATH: /dropins/extension_template.xml
+                volumes:
+                        - ./target:/dropins

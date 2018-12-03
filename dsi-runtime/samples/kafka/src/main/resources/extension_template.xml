@@ -1,0 +1,12 @@
+<server>
+
+  <webContainer deferServletLoad="false"/>
+
+  <featureManager>
+    <feature>jndi-1.0</feature>
+  </featureManager>
+
+  <webApplication location="/dropins/bridge-out-1.0.war"/>
+  <webApplication location="/dropins/bridge-in-1.0.war"/>
+
+</server>

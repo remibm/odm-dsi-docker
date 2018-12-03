@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+
+	<display-name>dsi-kafka</display-name>
+	<servlet>
+		<servlet-name>dsi-kafka</servlet-name>
+		<servlet-class>dsi.kafka.bridge.BridgeOutServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+
+	<mime-mapping>
+		<extension>css</extension>
+		<mime-type>text/css</mime-type>
+	</mime-mapping>
+
+	<servlet-mapping>
+		<servlet-name>dsi-kafka</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+</web-app>
