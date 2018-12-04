@@ -80,7 +80,7 @@
         stopServerTimeout="120" />
 
     <ia_runtime mementoDatabaseFormat="json"/>
-
     <include optional="true" location="${env.EXTENSION_TEMPLATE_PATH}"/>
     <include optional="true" location="persistence.${dsi.db.type}.xml"/>
+
 </server>
