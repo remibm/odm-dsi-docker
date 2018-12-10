@@ -1,4 +1,12 @@
--Djava.endorsed.dirs=../../../wxs/lib/endorsed
+# Licensed Materials - Property of IBM
+#
+# "Restricted Materials of IBM"
+#
+# Copyright IBM Corp. 2013, 2014 All Rights Reserved.
+#
+# US Government Users Restricted Rights - Use, duplication or
+# disclosure restricted by GSA ADP Schedule Contract with
+# IBM Corp.
 -Dorg.osgi.framework.bootdelegation=com.ibm.wsspi.runtime
 -Djava.library.path=.
 -Dorg.apache.xml.dtm.DTMManager=org.apache.xml.dtm.ref.DTMManagerDefault
@@ -7,6 +15,9 @@
 # Please see the platform specific reference section of
 # http://www-01.ibm.com/support/knowledgecenter/SSYKE2_8.0.0/welcome/welcome_javasdk_version.html
 # for more details about the -Xgcpolicy and -Xmx settings.
--Xmx2g
+-Xmx4g
 # Bypass blueprint EBA transaction interceptor
 -Dcom.ibm.ws.eba.blueprint.transform.impl.RestrictAddingBundle=true
+# When using collectives, please refer to http://www.ibm.com/support/knowledgecenter/SSEQTP_8.5.5/com.ibm.websphere.wlp.nd.multiplatform.doc/ae/twlp_sec_nist.html
+# for more details about setting up Liberty to run in SP800-131a strict mode.
+#-Dhttps.protocols=TLSv1.2

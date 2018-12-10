@@ -2,10 +2,9 @@
 
     <featureManager>
         <feature>appSecurity-2.0</feature>
-        <feature>restConnector-1.0</feature>
+        <feature>restConnector-2.0</feature>
         <feature>ssl-1.0</feature>
-        <feature>eXtremeScale.client-1.1.0</feature>
-        <feature>eXtremeScale.server-1.1.0</feature>
+        <feature>elasticCacheCatalog-1.0</feature>
     </featureManager>
 
     <logging
@@ -18,13 +17,25 @@
         httpPort="${http.port}"
         httpsPort="${https.port}" />
 
-    <xsServer
-        catalogServer="true"
-        enableQuorum="false"
-        catalogClusterEndpoints="${ia.clusterEndpoints}"
-        listenerPort="${ia.listenerPort}"
-        transport="XIO"
-        serverName="${ia.serverName}"/>
+    <elasticCacheCatalog
+        name="${ia.serverName}"
+        catalogClusterRef="ccid"
+        enableMBean="true"
+	enableManagementConcentrator="false" />
+
+    <xioEndpoint
+        port="${ia.listenerPort}" />
+
+    <elasticCacheCatalogCluster id="ccid">
+        <server
+            name="${ia.serverName}"
+            host="${ia.host}"
+            port="${ia.listenerPort}" />
+        <!--  *TODO* Add when using multiple catalogs.
+        <server name="*INSERT_CATALOG02_NAME*" host="*INSERT_CATALOG02_HOST*" port="*INSERT_CATALOG02_PORT*"/>
+        <server name="*INSERT_CATALOG03_NAME*" host="*INSERT_CATALOG03_HOST*" port="*INSERT_CATALOG03_PORT*"/>
+        -->
+    </elasticCacheCatalogCluster>
 
     <serverCommands
         startServerTimeout="120"

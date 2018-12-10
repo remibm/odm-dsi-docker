@@ -3,7 +3,7 @@
 
    <featureManager>
         <feature>appSecurity-2.0</feature>
-        <feature>restConnector-1.0</feature>
+        <feature>restConnector-2.0</feature>
         <feature>ssl-1.0</feature>
         <feature>ia:iaRuntime-_DSI_VERSION_</feature>
         <feature>ia:iaDispatcher-_DSI_VERSION_</feature>
@@ -20,11 +20,25 @@
         httpPort="${http.port}"
         httpsPort="${https.port}" />
 
-    <xsServer
-        catalogServer="false"
-        catalogServiceBootstrap="${ia.bootstrapEndpoints}"
-        transport="XIO"
-        serverName="${ia.serverName}" />
+    <xioEndpoint
+        port="${ia.listenerPort}"/>
+
+    <elasticCache
+       name="${ia.host}-${wlp.server.name}"
+       catalogClusterRef="ccid"
+       enableMBean="true" />
+
+    <elasticCacheCatalogCluster id="ccid">
+        <!--  *TODO* Add catalog server with relevant host and port values.
+        <server host="*INSERT_CATALOG01_HOST*" port="*INSERT_CATALOG01_PORT*"/>
+        <server host="*INSERT_CATALOG02_HOST*" port="*INSERT_CATALOG02_PORT*"/>
+        <server host="*INSERT_CATALOG03_HOST*" port="*INSERT_CATALOG03_PORT*"/>
+        -->
+        <server host="DSI_CATALOG_HOSTNAME" port="2809"/>
+    </elasticCacheCatalogCluster>
+
+    <gridApplication
+        location="${server.config.dir}/grids" />
 
     <remoteFileAccess>
         <!-- solutionManager and connectivityManager remote deployment

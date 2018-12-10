@@ -15,7 +15,7 @@ if [ ! -z "$2" ]; then
         sed -i "s/PT10S/PT${2}S/g" /tmp/$$.json
 fi
 
-curl -k -H "Content-Type: application/json" -d @/tmp/$$.json -X POST $URL
+curl -s --user tester:tester  -k -H "Content-Type: application/json" -d @/tmp/$$.json -X POST $URL
 
 cat /tmp/$$.json
 

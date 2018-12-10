@@ -44,6 +44,6 @@ echo "Endpoint URL: $URL"
 
 cat /tmp/$$.tmp
 
-curl -k -H "Content-Type: application/xml" -d @/tmp/$$.tmp -X POST $URL
+curl -s --user tester:tester -k -H "Content-Type: application/xml" -d @/tmp/$$.tmp -X POST $URL
 
 rm /tmp/$$.tmp
