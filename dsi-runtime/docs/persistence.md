@@ -22,7 +22,7 @@ The templates will typically form URL similar to : `jdbc:oracle:thin:@${dsi.db.h
 
 Optionally, set `DSI_DB_AUTOLOAD` to "1" in order to enable automatic autoload at startup.
 
-Further optional advanced database setup is available in `.env`. They are documented in `.env` file and [DSI knowledge center: Configuring Decision Server Insights persistence in JDBC](https://www.ibm.com/support/knowledgecenter/en/SSQP76_8.9.2/com.ibm.odm.itoa.config/topics/tsk_register_loader_callback_prod.html).
+Further optional advanced database setup is available in `.env`. They are documented in `.env` file and [DSI knowledge center: Configuring Decision Server Insights persistence in JDBC](https://www.ibm.com/support/knowledgecenter/en/SSQP76_8.10.0/com.ibm.odm.itoa.config/topics/tsk_register_loader_callback_prod.html).
 
 Run the DSI single runtime container:
 
