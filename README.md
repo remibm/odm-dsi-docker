@@ -7,9 +7,9 @@ This page shows you how to run a single DSI Runtime on Docker. For some addition
 ODM DSI Runtime on Docker works on MacOS or Ubuntu 16.04 LTS 64-bit. You can also use any Linux VM.
 Before you start, install the following software:
 * [IBM ODM Decision Server Insights V8.10.1](https://www.ibm.com/support/knowledgecenter/en/SSQP76_8.10.1/com.ibm.odm.itoa/topics/odm_itoa.html)
-* [Docker 17.09](https://www.docker.com/what-docker)
+* [Docker 18.09.1](https://www.docker.com/what-docker)
+* Docker Compose 1.23.2
 * Curl 7.47.0
-* Docker Compose 1.17
 
 Note: To be able to create the Docker image you must have an installation of IBM ODM Decision Server Insights V8.10.1.
 
